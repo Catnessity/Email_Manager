@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="C-MAIL_Logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="1"
+     inkscape:cx="212.5"
+     inkscape:cy="314.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect11"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath25">
+      <rect
+         style="fill:#ff0000;stroke:none;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;paint-order:stroke markers fill;stop-color:#000000"
+         id="rect25-8"
+         width="78"
+         height="45.033199"
+         x="763.61322"
+         y="452.82422" />
+    </clipPath>
+    <linearGradient
+       id="linearGradient9"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop10" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop11" />
+    </linearGradient>
+    <rect
+       x="250.5"
+       y="573"
+       width="448.21216"
+       height="117.36292"
+       id="rect4" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient9"
+       id="radialGradient11"
+       cx="351.82031"
+       cy="633.3335"
+       fx="351.82031"
+       fy="633.3335"
+       r="100.22656"
+       gradientTransform="matrix(-0.44263571,0.89670152,-1.770826,-0.8741268,1629.072,871.46946)"
+       gradientUnits="userSpaceOnUse" />
+    <rect
+       x="250.5"
+       y="573"
+       width="80.712165"
+       height="28.862921"
+       id="rect4-6" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path1-8"
+       style="fill:#800080;stroke-width:0.399747"
+       inkscape:transform-center-y="-4.9667393"
+       d="m 81.480449,20.08127 c 43.824541,0 44.836661,56.426937 44.836661,56.426937 l 0.0243,54.150453 H 36.622037 l -5.12e-4,-54.150469 c 0,0 -0.01919,-56.426921 44.858924,-56.426921 z"
+       sodipodi:nodetypes="sccccs"
+       inkscape:label="boxhole"
+       inkscape:transform-center-x="2.7183686e-06" />
+    <path
+       id="rect1"
+       style="fill:#e200e2;fill-opacity:1;stroke-width:0.402302"
+       d="m 83.606307,19.928321 66.440363,0.602327 c 0,0 26.44667,-1.916321 40.65617,13.288154 16.5506,16.553628 13.44068,41.486928 13.44068,41.486928 l 0.27436,55.35281 -78.07643,1.2e-4 c 0,0 -0.0243,-18.57874 -0.0243,-56.421781 C 119.91012,24.321652 83.606247,19.928321 83.606247,19.928321 Z"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:label="boxside" />
+    <path
+       id="path1"
+       style="fill:#e200e2;fill-opacity:1;stroke-width:0.31076"
+       inkscape:transform-center-y="-3.0018944"
+       d="m 30.135965,63.823106 c 43.820608,0 69.601235,34.10437 69.601235,34.10437 l 26.60425,32.731184 H 36.622037 L 11.470459,97.92746 c 0,0 -26.20866,-34.104354 18.665506,-34.104354 z"
+       sodipodi:nodetypes="sccccs"
+       inkscape:transform-center-x="-6.9854101"
+       inkscape:label="Door" />
+    <path
+       sodipodi:type="star"
+       style="fill:#f2f2f2;stroke-width:0.264583"
+       id="path2"
+       inkscape:flatsided="false"
+       sodipodi:sides="4"
+       sodipodi:cx="88.305847"
+       sodipodi:cy="86.996231"
+       sodipodi:r1="22.478687"
+       sodipodi:r2="1.9789261"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.78539814"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 88.305848,64.517544 89.705159,85.596919 110.78453,86.996232 89.705159,88.395543 88.305847,109.47492 86.906535,88.395543 65.82716,86.99623 86.906535,85.596919 Z"
+       inkscape:transform-center-x="2.1605791e-06"
+       inkscape:transform-center-y="-1.5842571e-06"
+       inkscape:label="bling"
+       transform="matrix(1.0916162,0,0,1.0916162,20.160294,-50.180371)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.32452697,0,0,0.32452697,96.864496,-62.340683)"
+       id="text3-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:'Akira Expanded';-inkscape-font-specification:'Akira Expanded, ';white-space:pre;shape-inside:url(#rect4-6);shape-padding:2.12132;display:inline;fill:#b400b4;fill-opacity:1;stroke:none;stroke-opacity:1"
+       inkscape:label="detail tag"><tspan
+         x="252.62109"
+         y="588.66095"
+         id="tspan3">C-Box
+</tspan></text>
+    <g
+       id="g11"
+       inkscape:label="flag thingy">
+      <path
+         id="rect3"
+         style="fill:#7f117f;fill-opacity:1;stroke-width:0.405285"
+         d="m 133.30635,74.630614 h 66.99846 v 2.93165 h -66.99846 z"
+         sodipodi:nodetypes="ccccc"
+         inkscape:label="flagthingy" />
+      <rect
+         style="fill:#ffff53;fill-opacity:1;stroke-width:0.337543"
+         id="rect2"
+         width="15.419756"
+         height="15.613715"
+         x="184.88507"
+         y="77.562263" />
+    </g>
+    <path
+       id="rect10"
+       style="fill:#afaf4d;fill-opacity:1;stroke-width:1.24581;stroke-linecap:round;stroke-dasharray:1.24581, 3.73738;stroke-dashoffset:1.24581"
+       d="m 3.8660917,79.263045 c 0,0 0.035768,7.871136 7.2625233,18.02092 8.385546,11.220615 25.121899,32.869295 25.121899,32.869295 l 168.250046,0.0208 v 21.64809 H 21.163227 L 3.8660917,141.109 Z"
+       sodipodi:nodetypes="cccccccc" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.46534221,0,0,0.38406017,-114.0846,-98.858004)"
+       id="text3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:86px;font-family:'Akira Expanded';-inkscape-font-specification:'Akira Expanded, ';white-space:pre;shape-inside:url(#rect4);shape-padding:2.12132;display:inline;fill:#ffff53;fill-opacity:1;stroke:none;stroke-width:4.35143;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.35143, 13.0543;stroke-dashoffset:4.35143;stroke-opacity:1"
+       inkscape:label="C-Mail"><tspan
+         x="252.62109"
+         y="652.74962"
+         id="tspan4">C-MAIL</tspan></text>
+  </g>
+</svg>
