@@ -1,0 +1,24 @@
+Dictionary<string, int> map = new Dictionary<string, int>();
+
+for (int i = 0; i < inbox.Count; i++)
+{
+    var message = inbox.GetMessage(i);
+    if (map.ContainsKey(message.From.ToString()))
+    {
+        map[message.From.ToString()]++;
+    }
+    else
+    {
+        map.Add(message.From.ToString(), 1);
+    }
+    
+}
+var sorteddict = map.OrderByDescending(pair => pair.Value);
+foreach(KeyValuePair<string, int> pair in sorteddict)
+{
+    Console.WriteLine("\n\n\n");
+    Console.WriteLine(pair.Key);
+    Console.WriteLine("Number of mails: " + pair.Value) ;
+}
+
+//Script zum anzeigen von allen Sendern und wie viele Mails von ihnen erhalten wurden
