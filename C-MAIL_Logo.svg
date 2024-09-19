@@ -144,16 +144,13 @@
        inkscape:transform-center-y="-1.5842571e-06"
        inkscape:label="bling"
        transform="matrix(1.0916162,0,0,1.0916162,20.160294,-50.180371)" />
-    <text
-       xml:space="preserve"
-       transform="matrix(0.32452697,0,0,0.32452697,96.864496,-62.340683)"
+    <path
+       d="m 262.25977,584.57404 c -0.35157,0.9668 -1.4502,1.20117 -2.76856,1.20117 -1.56738,-0.022 -2.90039,-0.31494 -2.87842,-1.91894 v -0.2417 c -0.022,-1.61866 1.31104,-1.89698 2.87842,-1.91895 1.31836,0 2.40967,0.22705 2.76856,1.19385 h 3.9331 c -0.2417,-3.31787 -3.15674,-4.31397 -6.70166,-4.32129 -3.69141,0.0146 -6.73828,1.08398 -6.72363,4.80469 v 0.71777 c -0.0147,3.72803 3.03222,4.79736 6.72363,4.80469 3.54492,0 6.45996,-0.9961 6.70166,-4.32129 z m 4.22607,-2.27783 v 2.87841 h 10.80322 v -2.87841 z m 14.93408,4.02832 v -1.31836 h 5.16358 c 0.32959,0 0.60058,0.32959 0.60058,0.65918 0,0.32959 -0.27099,0.65918 -0.60058,0.65918 z m 4.4458,-5.16358 c 0.32959,0 0.60059,0.32959 0.60059,0.65918 0,0.32959 -0.271,0.66651 -0.60059,0.66651 h -4.4458 v -1.32569 z m 3.06153,2.41699 c 0.70312,-0.44677 1.14257,-1.17187 1.14257,-2.11669 0.022,-1.71387 -1.42089,-2.64405 -3.12744,-2.63672 h -9.36035 v 9.84375 h 10.08545 c 1.69189,0 3.14209,-0.92285 3.12012,-2.64405 0,-1.23779 -0.74707,-2.0874 -1.86035,-2.44629 z m 9.26513,-5.00976 c -3.70605,0.007 -6.73828,1.07666 -6.72363,4.80469 v 0.71777 c -0.0147,3.7207 3.01758,4.79736 6.72363,4.80469 3.69873,-0.007 6.73096,-1.08399 6.71631,-4.80469 v -0.71777 c 0,-3.72071 -3.01025,-4.80469 -6.71631,-4.80469 z m 2.87842,5.28076 c 0.022,1.61133 -1.31103,1.9043 -2.87842,1.92627 -1.5747,-0.022 -2.90771,-0.31494 -2.88574,-1.92627 v -0.2417 c -0.022,-1.604 1.31104,-1.89697 2.88574,-1.91894 1.56739,0.022 2.90039,0.31494 2.87842,1.91894 z m 10.25391,-2.15332 -2.76123,-2.87109 h -4.80469 l 5.16357,4.92187 -5.16357,4.92188 h 4.80469 l 2.76123,-2.87842 2.76123,2.87842 h 4.79736 l -5.16357,-4.92188 5.16357,-4.92187 h -4.79736 z"
        id="text3-2"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:'Akira Expanded';-inkscape-font-specification:'Akira Expanded, ';white-space:pre;shape-inside:url(#rect4-6);shape-padding:2.12132;display:inline;fill:#b400b4;fill-opacity:1;stroke:none;stroke-opacity:1"
-       inkscape:label="detail tag"><tspan
-         x="252.62109"
-         y="588.66095"
-         id="tspan3">C-Box
-</tspan></text>
+       style="font-size:15px;font-family:'Akira Expanded';-inkscape-font-specification:'Akira Expanded, ';white-space:pre;shape-padding:2.12132;fill:#b400b4"
+       inkscape:label="detail tag"
+       transform="matrix(0.32452697,0,0,0.32452697,96.864496,-62.340683)"
+       aria-label="C-Box&#10;" />
     <g
        id="g11"
        inkscape:label="flag thingy">
@@ -176,14 +173,12 @@
        style="fill:#afaf4d;fill-opacity:1;stroke-width:1.24581;stroke-linecap:round;stroke-dasharray:1.24581, 3.73738;stroke-dashoffset:1.24581"
        d="m 3.8660917,79.263045 c 0,0 0.035768,7.871136 7.2625233,18.02092 8.385546,11.220615 25.121899,32.869295 25.121899,32.869295 l 168.250046,0.0208 v 21.64809 H 21.163227 L 3.8660917,141.109 Z"
        sodipodi:nodetypes="cccccccc" />
-    <text
-       xml:space="preserve"
-       transform="matrix(0.46534221,0,0,0.38406017,-114.0846,-98.858004)"
+    <path
+       d="m 307.88281,629.31798 c -2.01562,5.54297 -8.31445,6.88672 -15.87304,6.88672 -8.98633,-0.12598 -16.62891,-1.80567 -16.50293,-11.00196 V 623.817 c -0.12598,-9.28027 7.5166,-10.87598 16.50293,-11.00195 7.55859,0 13.81543,1.30176 15.87304,6.84472 h 22.54981 c -1.38575,-19.02246 -18.09864,-24.73339 -38.42285,-24.77539 -21.16407,0.084 -38.63282,6.21485 -38.54883,27.54688 v 4.11523 c -0.084,21.37403 17.38476,27.50489 38.54883,27.54688 20.32421,0 37.0371,-5.71094 38.42285,-24.77539 z m 24.22949,-13.05957 v 16.50293 h 61.93848 v -16.50293 z m 63.61817,36.44922 h 22.0039 v -30.1084 l 22.0459,30.1084 h 11.00196 l 22.04589,-30.1084 v 30.1084 h 22.00391 v -56.4375 h -27.50488 l -22.0459,28.21875 -22.00391,-28.21875 h -27.54687 z m 144.15918,-40.01856 7.72656,16.6709 h -15.49512 z m -43.37793,40.10254 h 24.77539 l 4.45117,-9.6582 h 28.26074 l 4.45118,9.6582 h 24.77539 l -30.27637,-56.4375 h -26.16113 z m 88.39355,-56.52148 v 56.4375 h 22.00391 v -56.4375 z m 33.67774,0 v 56.4375 h 66.05371 v -17.88868 h -44.04981 v -38.54882 z"
        id="text3"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:86px;font-family:'Akira Expanded';-inkscape-font-specification:'Akira Expanded, ';white-space:pre;shape-inside:url(#rect4);shape-padding:2.12132;display:inline;fill:#ffff53;fill-opacity:1;stroke:none;stroke-width:4.35143;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.35143, 13.0543;stroke-dashoffset:4.35143;stroke-opacity:1"
-       inkscape:label="C-Mail"><tspan
-         x="252.62109"
-         y="652.74962"
-         id="tspan4">C-MAIL</tspan></text>
+       style="font-size:86px;font-family:'Akira Expanded';-inkscape-font-specification:'Akira Expanded, ';white-space:pre;shape-padding:2.12132;fill:#ffff53;stroke-width:4.35143;stroke-linecap:round;stroke-dasharray:4.35143, 13.0543;stroke-dashoffset:4.35143"
+       inkscape:label="C-Mail"
+       transform="matrix(0.46534221,0,0,0.38406017,-114.0846,-98.858004)"
+       aria-label="C-MAIL" />
   </g>
 </svg>
