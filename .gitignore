@@ -1,2 +1,4 @@
-.vs
-Code Snippets/.vs/
+**/.vs/**
+**/obj/**
+**/bin/**
+**.vs**
