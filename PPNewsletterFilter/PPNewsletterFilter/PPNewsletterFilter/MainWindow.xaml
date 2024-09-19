@@ -1,0 +1,129 @@
+﻿<Window x:Class="PPNewsletterFilter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PPNewsletterFilter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+    
+    
+    <Grid>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#f3e0ff">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Mail Newsletter"
+                   FontWeight="Black"
+                   FontFamily="Montserrat"
+                   FontSize="14"
+                   Grid.Column="0"
+                   VerticalAlignment="center"
+                   HorizontalAlignment="center"/>
+
+                <Ellipse Height="30" Width="30" Fill="#44076e" Grid.Column="2" Margin="130,0,0,0"/>
+                
+                
+            </Grid>
+
+            <Grid Background="White" Grid.Row="1" Margin="10,10,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Sender"
+                           FontWeight="Black"
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Grid.Column="0"
+                           VerticalAlignment="center"
+                           HorizontalAlignment="center"/>
+
+                <TextBlock Text="Count"
+                            FontWeight="Black"
+                            FontFamily="Montserrat"
+                            FontSize="14"
+                            Grid.Column="1"
+                            VerticalAlignment="center"
+                            HorizontalAlignment="center"/>      
+
+                <TextBlock Text="Unsubscribe (Link)"
+                            FontWeight="Black"
+                            FontFamily="Montserrat"
+                            FontSize="14"
+                            Grid.Column="2"
+                            VerticalAlignment="center"
+                            HorizontalAlignment="center"/>
+
+                <TextBlock Text="Delete"
+                            FontWeight="Black"
+                            FontFamily="Montserrat"
+                            FontSize="14"
+                            Grid.Column="3"
+                            VerticalAlignment="center"
+                            HorizontalAlignment="center"/>
+
+                <!--<TextBlock x:Name="txtSender"
+                           FontWeight="Normal"
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
+
+                <TextBlock x:Name="txtCount"
+                           FontWeight="Normal"
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>-->
+                
+               
+                <ListBox x:Name="lstEmails"
+                           FontWeight="Normal"
+                           FontFamily="Montserrat"
+                           FontSize="14"                       
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/> 
+
+
+
+            </Grid>
+
+
+        </Grid>
+
+
+
+
+
+
+    </Grid>
+</Window>
