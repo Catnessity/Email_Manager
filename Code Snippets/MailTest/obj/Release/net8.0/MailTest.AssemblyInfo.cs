@@ -12,9 +12,9 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("MailTest")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5b61a0ca31ba1f479f4922beb6ffb7b668a3868")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+387bf5cf3aa64683fa5936b82dec87874a0247a5")]
 [assembly: System.Reflection.AssemblyProductAttribute("MailTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MailTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

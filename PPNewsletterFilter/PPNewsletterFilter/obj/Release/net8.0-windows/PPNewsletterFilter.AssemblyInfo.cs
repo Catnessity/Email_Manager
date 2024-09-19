@@ -11,13 +11,15 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("MailTest")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("PPNewsletterFilter")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5b61a0ca31ba1f479f4922beb6ffb7b668a3868")]
-[assembly: System.Reflection.AssemblyProductAttribute("MailTest")]
-[assembly: System.Reflection.AssemblyTitleAttribute("MailTest")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+387bf5cf3aa64683fa5936b82dec87874a0247a5")]
+[assembly: System.Reflection.AssemblyProductAttribute("PPNewsletterFilter")]
+[assembly: System.Reflection.AssemblyTitleAttribute("PPNewsletterFilter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 
 // Von der MSBuild WriteCodeFragment-Klasse generiert.
 
