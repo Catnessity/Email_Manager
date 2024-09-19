@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v5jAupKANcg=",
+  "dgSpecHash": "ug7q/2RYkCQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Caroline.Baer\\Downloads\\PPNewsletterFilterNEW\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter.csproj",
+  "projectFilePath": "U:\\4aDAC\\Email_Manager\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Caroline.Baer\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\Caroline.Baer\\.nuget\\packages\\mailkit\\4.7.1.1\\mailkit.4.7.1.1.nupkg.sha512",

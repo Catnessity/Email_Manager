@@ -279,11 +279,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Caroline.Baer\\Downloads\\PPNewsletterFilterNEW\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter.csproj",
+      "projectUniqueName": "U:\\4aDAC\\Email_Manager\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter.csproj",
       "projectName": "PPNewsletterFilter",
-      "projectPath": "C:\\Users\\Caroline.Baer\\Downloads\\PPNewsletterFilterNEW\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter.csproj",
+      "projectPath": "U:\\4aDAC\\Email_Manager\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter.csproj",
       "packagesPath": "C:\\Users\\Caroline.Baer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Caroline.Baer\\Downloads\\PPNewsletterFilterNEW\\PPNewsletterFilter\\PPNewsletterFilter\\obj\\",
+      "outputPath": "U:\\4aDAC\\Email_Manager\\PPNewsletterFilter\\PPNewsletterFilter\\PPNewsletterFilter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

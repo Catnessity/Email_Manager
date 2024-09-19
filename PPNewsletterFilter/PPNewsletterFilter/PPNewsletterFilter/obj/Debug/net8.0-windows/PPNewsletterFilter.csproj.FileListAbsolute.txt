@@ -70,3 +70,31 @@ C:\Users\a889359\OneDrive - Eviden\Dokumente\Berufsschule\4aDAC\MailNewsletterFi
 C:\Users\a889359\OneDrive - Eviden\Dokumente\Berufsschule\4aDAC\MailNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsle.AE8A89A6.Up2Date
 C:\Users\a889359\OneDrive - Eviden\Dokumente\Berufsschule\4aDAC\MailNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.genruntimeconfig.cache
 C:\Users\a889359\OneDrive - Eviden\Dokumente\Berufsschule\4aDAC\MailNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\ref\PPNewsletterFilter.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\PPNewsletterFilter.exe
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\PPNewsletterFilter.deps.json
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\PPNewsletterFilter.runtimeconfig.json
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\PPNewsletterFilter.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\PPNewsletterFilter.pdb
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\MailKit.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\bin\Debug\net8.0-windows\MimeKit.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.csproj.AssemblyReference.cache
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\LoginView.g.cs
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\MainWindow.g.cs
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\App.g.cs
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter_MarkupCompile.cache
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter_MarkupCompile.lref
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\LoginView.baml
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\MainWindow.baml
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.g.resources
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.GeneratedMSBuildEditorConfig.editorconfig
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.AssemblyInfoInputs.cache
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.AssemblyInfo.cs
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.csproj.CoreCompileInputs.cache
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.sourcelink.json
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsle.AE8A89A6.Up2Date
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\refint\PPNewsletterFilter.dll
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.pdb
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\PPNewsletterFilter.genruntimeconfig.cache
+U:\4aDAC\Email_Manager\PPNewsletterFilter\PPNewsletterFilter\PPNewsletterFilter\obj\Debug\net8.0-windows\ref\PPNewsletterFilter.dll

@@ -9,16 +9,17 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="White">
-    
-    
+
+
     <Grid>
-        <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition/>
-            </Grid.RowDefinitions>
-
+        </Grid.RowDefinitions>
+        
+        <!--Grid Header-->
             <Grid Background="#f3e0ff">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -26,7 +27,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Mail Newsletter"
+                <TextBlock Text="Your Mails..."
                    FontWeight="Black"
                    FontFamily="Montserrat"
                    FontSize="14"
@@ -35,15 +36,126 @@
                    HorizontalAlignment="center"/>
 
                 <Ellipse Height="30" Width="30" Fill="#44076e" Grid.Column="2" Margin="130,0,0,0"/>
-                
-                
             </Grid>
 
-            <Grid Background="White" Grid.Row="1" Margin="10,10,10,0">
+            <!--Grid Filter-->
+            <Grid Background="White" Grid.Row="1" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+                <TextBlock HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Select Filter" FontWeight="Black" VerticalAlignment="Center"/>
+                <CheckBox Content="Newsletter" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                <CheckBox Content="Abbestellen" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+                <CheckBox Content="Unsubscribe" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>              
+                <TextBox Grid.Column="4" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Input Filter" VerticalAlignment="Center" Width="120"/>
+                
+                
+            <Button Grid.Column="5" Content="Load" HorizontalAlignment="Center" Margin="0,0,0,0" 
+                    Grid.Row="1" VerticalAlignment="Center" 
+                    Background="#44076e" Foreground="White"
+                    Width="100px"/>
+
+        </Grid> 
+
+       
+
+
+        <!--Grid Body-->
+        <DataGrid Grid.Row="2"
+                  Background="White"
+                  BorderBrush="White"
+                  Margin="0,0,0,0"
+                  ItemsSource="{Binding Emails}"
+                  AutoGenerateColumns="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="True"
+                  AlternatingRowBackground="#F1F1F1"
+                  GridLinesVisibility="None"
+                  HorizontalGridLinesBrush="Transparent"
+                  VerticalGridLinesBrush="Transparent"
+                  IsReadOnly="True">
+
+            
+            <DataGrid.Columns>
+                <!--Sender Column-->
+                <DataGridTextColumn Header="Sender" Width="*" Binding="{Binding Sender}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="#44076e"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
+                <!--Count Column-->
+                <DataGridTextColumn Header="Count" Width="*" Binding="{Binding Count}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="#44076e"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
+                <!--Unsubscribe Column-->
+                <DataGridTextColumn Header="Unsubscribe" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="#44076e"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
+                <!--Delete Column-->
+                <DataGridTextColumn Header="Delete" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="#44076e"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="1179,25,0,0" VerticalAlignment="Top" Width="0"/>
+
+
+
+
+        <!--Grid Body OLD-->
+            <!--<Grid Background="White" Grid.Row="1" Margin="10,10,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
-                    
+
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -67,7 +179,7 @@
                             FontSize="14"
                             Grid.Column="1"
                             VerticalAlignment="center"
-                            HorizontalAlignment="center"/>      
+                            HorizontalAlignment="center"/>
 
                 <TextBlock Text="Unsubscribe (Link)"
                             FontWeight="Black"
@@ -85,45 +197,25 @@
                             VerticalAlignment="center"
                             HorizontalAlignment="center"/>
 
-                <!--<TextBlock x:Name="txtSender"
-                           FontWeight="Normal"
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Grid.Column="0"
-                           Grid.Row="1"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"/>
-
-                <TextBlock x:Name="txtCount"
-                           FontWeight="Normal"
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Grid.Column="1"
-                           Grid.Row="1"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"/>-->
                 
-               
-                <ListBox x:Name="lstEmails"
+                <ListBox   x:Name="lstEmails"
                            FontWeight="Normal"
                            FontFamily="Montserrat"
                            FontSize="14"                       
                            Grid.Row="1"
                            Grid.Column="0"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Left"/> 
+                           HorizontalAlignment="Left"/>
 
+                <ListBox  x:Name="lstCounts"
+                           FontWeight="Normal"
+                           FontFamily="Montserrat"
+                           FontSize="14"                       
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"/>
 
-
-            </Grid>
-
-
-        </Grid>
-
-
-
-
-
-
+            </Grid>-->
     </Grid>
 </Window>
