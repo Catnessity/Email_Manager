@@ -1,4 +1,6 @@
-﻿using System.Text;
+using PPNewsletterFilter;
+using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,18 +18,28 @@ namespace PPNewsletterFilter
     /// </summary>
     public partial class MainWindow : Window
     {
+	public ObservableCollection<EmailInfo> Emails { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            Emails = new ObservableCollection<EmailInfo>();
+            DataContext = this;
+
         }
 
         public void UpdateEmailList(Dictionary<string, int> emailMap)
         {
-            lstEmails.Items.Clear();
+	    Emails.Clear();
             foreach (var pair in emailMap)
             {
-                lstEmails.Items.Add($"{pair.Key}: {pair.Value} Email Count");
+                Emails.Add(new EmailInfo { Sender = pair.Key, Count = pair.Value });
             }
         }
     }
+
+        public class EmailInfo
+        {
+            public string? Sender { get; set; }
+            public int Count { get; set; }
+        }
 }
