@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PPNewsletterFilter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e49ff3b29d7cc02bcd6afcb2a8fef2246a4ca151")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59d833b1d3e884f7462ad92955eff19a2ef00ea4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PPNewsletterFilter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PPNewsletterFilter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

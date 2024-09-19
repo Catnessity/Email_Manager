@@ -14,56 +14,62 @@
     <Grid>
 
         <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <!--Grid Header-->
-            <Grid Background="#f3e0ff">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Your Mails..."
-                   FontWeight="Black"
-                   FontFamily="Montserrat"
-                   FontSize="14"
-                   Grid.Column="0"
-                   VerticalAlignment="center"
-                   HorizontalAlignment="center"/>
-
-                <Ellipse Height="30" Width="30" Fill="#44076e" Grid.Column="2" Margin="130,0,0,0"/>
-            </Grid>
-
-            <!--Grid Filter-->
-            <Grid Background="White" Grid.Row="1" Margin="0,0,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+        <Grid Background="#2D4E3E">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-                <TextBlock HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Select Filter" FontWeight="Black" VerticalAlignment="Center"/>
-                <CheckBox Content="Newsletter" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-                <CheckBox Content="Abbestellen" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
-                <CheckBox Content="Unsubscribe" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>              
-                <TextBox Grid.Column="4" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Input Filter" VerticalAlignment="Center" Width="120"/>
-                
-                
+            <TextBlock Text="Your Mails"
+                               Foreground="#61A888"
+                               FontWeight="Black"
+                               FontFamily="Montserrat"
+                               FontSize="14"
+                               Grid.Column="0"
+                               VerticalAlignment="center"
+                               HorizontalAlignment="center"/>
+
+            <Image Source="images/logo.png"
+                       Grid.Column="2"
+                       Width="50"
+                       Margin="130,0,0,0"
+                       Height="50"/>
+
+        </Grid>
+
+        <!--Grid Filter-->
+        <Grid Background="White" Grid.Row="1" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Select Filter" FontWeight="Black" VerticalAlignment="Center"/>
+            <CheckBox Content="Newsletter" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            <CheckBox Content="Abbestellen" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+            <CheckBox Content="Unsubscribe" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="4" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Input Filter" VerticalAlignment="Center" Width="120"/>
+
+
             <Button Grid.Column="5" Content="Load" HorizontalAlignment="Center" Margin="0,0,0,0" 
                     Grid.Row="1" VerticalAlignment="Center" 
-                    Background="#44076e" Foreground="White"
+                    Background="#2D4E3E" Foreground="White"
                     Width="100px"/>
 
-        </Grid> 
+        </Grid>
 
-       
+
 
 
         <!--Grid Body-->
@@ -81,7 +87,7 @@
                   VerticalGridLinesBrush="Transparent"
                   IsReadOnly="True">
 
-            
+
             <DataGrid.Columns>
                 <!--Sender Column-->
                 <DataGridTextColumn Header="Sender" Width="*" Binding="{Binding Sender}">
@@ -90,8 +96,8 @@
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="#44076e"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#61A888"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Height" Value="40"/>
                             <Setter Property="FontSize" Value="14"/>
                         </Style>
@@ -105,8 +111,8 @@
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="#44076e"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#61A888"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Height" Value="40"/>
                             <Setter Property="FontSize" Value="14"/>
                         </Style>
@@ -120,8 +126,8 @@
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="#44076e"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#61A888"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Height" Value="40"/>
                             <Setter Property="FontSize" Value="14"/>
                         </Style>
@@ -135,14 +141,14 @@
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="#44076e"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#61A888"/>
+                            <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Height" Value="40"/>
                             <Setter Property="FontSize" Value="14"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                
+
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="1179,25,0,0" VerticalAlignment="Top" Width="0"/>
@@ -151,7 +157,7 @@
 
 
         <!--Grid Body OLD-->
-            <!--<Grid Background="White" Grid.Row="1" Margin="10,10,10,0">
+        <!--<Grid Background="White" Grid.Row="1" Margin="10,10,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
