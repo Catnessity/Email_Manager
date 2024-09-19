@@ -10,20 +10,52 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        System.Console.Write("password: ");
-        string password = null;
-        while (true)
-        {
-            var key = System.Console.ReadKey(true);
-            if (key.Key == ConsoleKey.Enter)
-                break;
-            password += key.KeyChar;
-        }
         using (var client = new ImapClient())
         {
-            client.Connect("imap.gmx.net", 993, true);
+            Console.WriteLine("Use private password?");
+            string choice = Console.ReadLine();
+            string password = "";
 
-            client.Authenticate("peters.jasmin@gmx.at", password);
+            if (choice.ToLower() == "y" || choice.ToLower() == "yes")
+            {
+                System.Console.Write("password: ");
+                while (true)
+                {
+                    var key = System.Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Enter)
+                        break;
+                    password += key.KeyChar;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Please choose the email domain you want to use:");
+                Console.WriteLine("1) GMX");
+                Console.WriteLine("2) Gmail");
+                var key = Console.ReadKey(true);
+
+                switch (key.KeyChar)
+                {
+                    case '1':
+                        password = "C-mailT0123!";
+                        client.Connect("imap.gmx.net", 993, true);
+                        client.Authenticate("c-mail.test@gmx.at", password);
+                        break;
+                    case '2':
+                        password = "anfanjlunavnzctj";
+                        client.Connect("imap.gmail.com", 993, true);
+                        client.Authenticate("c.mail.testmail@gmail.com", password);
+                        break;
+
+                    default:
+                        throw new Exception("Please enter valid character");
+                        break;
+                }
+
+            }
+
+
+
 
             // The Inbox folder is always available on all IMAP servers...
             var inbox = client.Inbox;
@@ -33,17 +65,19 @@ internal class Program
             for (int i = 0; i < inbox.Count; i++)
             {
                 var message = inbox.GetMessage(i);
-                if(message.From.ToString().Contains("fredi.f5000@gmail.com"))
+                if (message.From.ToString().Contains("fredi.f5000@gmail.com"))
                 {
                     inbox.Store(i, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
                     inbox.Expunge();
                     Console.WriteLine("it worked... or did it?");
                 }
+                Console.WriteLine(message.Subject);
             }
 
 
 
             client.Disconnect(true);
         }
+
     }
 }

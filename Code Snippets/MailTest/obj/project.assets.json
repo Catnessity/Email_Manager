@@ -278,11 +278,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jasmin.peters\\source\\repos\\MailTest\\MailTest\\MailTest.csproj",
+      "projectUniqueName": "U:\\Fächermitschrift\\Jahr 3\\PP\\Email_Manager\\Code Snippets\\MailTest\\MailTest.csproj",
       "projectName": "MailTest",
-      "projectPath": "C:\\Users\\jasmin.peters\\source\\repos\\MailTest\\MailTest\\MailTest.csproj",
+      "projectPath": "U:\\Fächermitschrift\\Jahr 3\\PP\\Email_Manager\\Code Snippets\\MailTest\\MailTest.csproj",
       "packagesPath": "C:\\Users\\jasmin.peters\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jasmin.peters\\source\\repos\\MailTest\\MailTest\\obj\\",
+      "outputPath": "U:\\Fächermitschrift\\Jahr 3\\PP\\Email_Manager\\Code Snippets\\MailTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jasmin.peters\\AppData\\Roaming\\NuGet\\NuGet.Config",

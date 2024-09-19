@@ -19,3 +19,25 @@ C:\Users\jasmin.peters\source\repos\MailTest\MailTest\bin\Debug\net8.0\runtimes\
 C:\Users\jasmin.peters\source\repos\MailTest\MailTest\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Users\jasmin.peters\source\repos\MailTest\MailTest\bin\Debug\net8.0\MailKit.dll
 C:\Users\jasmin.peters\source\repos\MailTest\MailTest\bin\Debug\net8.0\MimeKit.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MailTest.exe
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MailTest.deps.json
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MailTest.runtimeconfig.json
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MailTest.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MailTest.pdb
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MailKit.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\MimeKit.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.csproj.AssemblyReference.cache
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.GeneratedMSBuildEditorConfig.editorconfig
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.AssemblyInfoInputs.cache
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.AssemblyInfo.cs
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.csproj.CoreCompileInputs.cache
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.sourcelink.json
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.csproj.Up2Date
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\refint\MailTest.dll
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.pdb
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\MailTest.genruntimeconfig.cache
+U:\Fächermitschrift\Jahr 3\PP\Email_Manager\Code Snippets\MailTest\obj\Debug\net8.0\ref\MailTest.dll
