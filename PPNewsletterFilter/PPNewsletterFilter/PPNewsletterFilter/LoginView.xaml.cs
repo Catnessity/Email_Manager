@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using MailKit.Net.Imap;
 using MailKit;
 using System.Windows.Input;
+using PPNewsletterFilter;
 
 namespace PPNewsletterFilter
 {
@@ -21,20 +22,42 @@ namespace PPNewsletterFilter
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string mail = txtEmail.Text;
-            string password = pwdPassword.Password;
+            // Show the loading overlay
+            loadingOverlay.Visibility = Visibility.Visible;
 
-            
+            // Run long operation asynchronously
+            bool success = await Task.Run(() => ConnectToServer());
 
-            // Connect to IMAP server and authenticate
-            using (var client = new ImapClient())
+            if (success)
             {
-                try
+                // If successful, open the main window
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close(); // Close the login window
+            }
+        }
+
+        private bool ConnectToServer()
+        {
+
+            try
+            {
+                string mail = string.Empty;
+                string password = string.Empty;
+
+                this.Dispatcher.Invoke(() =>
+                {
+                    mail = txtEmail.Text;
+                    password = pwdPassword.Password;
+                });
+
+                // Connect to IMAP server and authenticate
+                using (var client = new ImapClient())
                 {
                     client.Connect("imap.gmx.net", 993, true);
                     client.Authenticate(mail, password);
@@ -58,18 +81,23 @@ namespace PPNewsletterFilter
                             map.Add(message.From.ToString(), 1);
                         }
                     }
-
-                    // Open MainWindow and update email list
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    mainWindow.UpdateEmailList(map);
-
-                    this.Close();
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        // Open MainWindow and update email list
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.UpdateEmailList(map);
+                    });
                 }
-                catch (Exception ex)
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.Dispatcher.Invoke(() =>
                 {
                     MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+
+                });
+                return false;
             }
         }
     }
