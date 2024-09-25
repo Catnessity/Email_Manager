@@ -44,7 +44,8 @@
                     Width="110"
                     Height="110"/>
 
-            <TextBlock Text="Unsubscribe Newsletter"
+            <TextBlock 
+                Text="Unsubscribe Newsletter"
                     Foreground="WhiteSmoke"
                     FontSize="12"
                     FontWeight="Medium"
@@ -53,7 +54,8 @@
                     Margin="0,5,0,0"/>
 
 
-            <TextBlock  Text="Mail"
+            <TextBlock  Name ="Mail"
+                        Text="Mail"
                     Foreground="WhiteSmoke"
                     FontSize="14"
                     FontWeight="Medium"
@@ -71,7 +73,8 @@
 
             </TextBox>
 
-            <TextBlock  Text="Password"
+            <TextBlock  Name ="Password"
+                Text="Password"
                     Foreground="WhiteSmoke"
                     FontSize="14"
                     FontWeight="Medium"
@@ -87,6 +90,13 @@
                     Background="#61A888"
                     BorderBrush="#2D4E3E">
             </PasswordBox>
+            <TextBlock  Name="feedback"
+                        Text=""
+                    Foreground="Red"
+                    FontSize="8"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Margin="10,5,5,20"/>
 
             <Button x:Name="btnLogin"
                 Background="#2D4E3E"
@@ -97,7 +107,7 @@
                 FontFamily="Montserrat"
                 Cursor="Hand"
                 Grid.Column="2"
-                Margin="0,40,0,0"  
+                Margin="0,0,0,0"  
                 Padding="3,4,3,4"
                 Width="50"
                 Click="btnLogin_Click">
