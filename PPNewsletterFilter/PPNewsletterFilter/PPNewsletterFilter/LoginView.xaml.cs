@@ -8,11 +8,15 @@ using PPNewsletterFilter;
 using System.ComponentModel;
 using System.Xml.Schema;
 using System.Windows.Media;
+using System.Windows.Threading;
+using System.Printing;
 
 namespace PPNewsletterFilter
 {
     public partial class LoginView : Window
     {
+        static bool connectedToServer;
+
         public LoginView()
         {
             InitializeComponent();
@@ -30,7 +34,7 @@ namespace PPNewsletterFilter
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -51,25 +55,35 @@ namespace PPNewsletterFilter
         private void btnFullScreen_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Maximized)
-            {    
+            {
                 WindowState = WindowState.Normal;
             }
             else
-            {             
+            {
                 WindowState = WindowState.Maximized;
             }
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            // Show the loading overlay
-            loadingOverlay.Visibility = Visibility.Visible;
-
             // Run long operation asynchronously
-            bool success = await Task.Run(() => ConnectToServer());
-
-            if (success)
+            //bool success = await Task.Run(() => ConnectToServer());
+            if (Application.Current.Dispatcher.CheckAccess())
             {
+                ConnectToServer();
+            }
+            else
+            {
+                // Otherwise, marshal the function back to the UI thread asynchronously
+                Application.Current.Dispatcher.BeginInvoke((Action)(() => ConnectToServer()));
+            }
+
+
+            if (connectedToServer)
+            {
+                //Thread.Sleep(2000);
+                //await Task.Run(() => StartLoading());
+
                 // If successful, open the main window
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
@@ -77,17 +91,40 @@ namespace PPNewsletterFilter
             }
         }
 
-        private bool ConnectToServer()
+        //async switchToMainWindow((object sender, RoutedEventArgs e){
+
+        //}
+
+        private async void ConnectToServer()
         {
 
-                string mail = string.Empty;
-                string password = string.Empty;
+            string mail = string.Empty;
+            string password = string.Empty;
+            //this.Dispatcher.Invoke(() =>
+            //        {
+            mail = txtEmail.Text;
+            password = pwdPassword.Password;
+            //});
 
-                this.Dispatcher.Invoke(() =>
-                {
-                    mail = txtEmail.Text;
-                    password = pwdPassword.Password;
-                });
+            //if email empty return with color
+            if (mail == "")
+            {
+                Mail.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                Mail.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
+            }
+            //if password empty return with color
+            if (password == "")
+            {
+                Password.Foreground = new SolidColorBrush(Colors.Red);
+                connectedToServer = false;
+            }
+            else
+            {
+                Password.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
+            }
 
             // Connect to IMAP server and authenticate
             using (var client = new ImapClient())
@@ -111,7 +148,7 @@ namespace PPNewsletterFilter
                 {
                     //MessageBox.Show($"Please check your email.", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Warning);
                     feedback.Text = "Please check your email, either there is a typo or your provider is not supported.";
-                    return false;
+                    connectedToServer = false;
                 }
 
                 //try to connect to the imap server with the given password
@@ -124,7 +161,7 @@ namespace PPNewsletterFilter
                 {
                     //MessageBox.Show($"Please check your credentials.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                     feedback.Text = "The connection to the server or the authentication failed. \n Check your password and try again.";
-                    return false ;
+                    connectedToServer = false;
                 }
 
                 try
@@ -133,26 +170,45 @@ namespace PPNewsletterFilter
                     var inbox = client.Inbox;
                     inbox.Open(FolderAccess.ReadWrite);
 
-                    Dictionary<string, int> map = new Dictionary<string, int>();
+                    await Task.Run(() => StartLoading(client, inbox));
+                    connectedToServer = true;
 
-                    for (int i = 0; i < inbox.Count; i++)
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    connectedToServer = false;
+                }
+            }
+
+
+        }
+
+
+
+        private async void StartLoading(ImapClient client, IMailFolder inbox)
+        {
+            inbox.Open(FolderAccess.ReadWrite);
+            var MessageCount = inbox.Count;
+            Dictionary<string, int> map = new Dictionary<string, int>();
+
+            for (int i = 0; i < inbox.Count; i++)
+            {
+                var message = inbox.GetMessage(i);
+                if (map.ContainsKey(message.From.ToString()))
+                {
+                    map[message.From.ToString()]++;
+                }
+                else
+                {
+                    map.Add(message.From.ToString(), 1);
+                    // Progresscounter
+                    this.Dispatcher.Invoke(() =>
                     {
-                        var message = inbox.GetMessage(i);
-                        if (map.ContainsKey(message.From.ToString()))
-                        {
-                            map[message.From.ToString()]++;
-                        }
-                        else
-                        {
-                            map.Add(message.From.ToString(), 1);
-                        }
+                        LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
+                    });
 
-                        // Progresscounter
-                        this.Dispatcher.Invoke(() =>
-                        {
-                            LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
-                        });
-                    }
 
                     // Open MainWindow and update email list
                     this.Dispatcher.Invoke(() =>
@@ -160,19 +216,10 @@ namespace PPNewsletterFilter
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.UpdateEmailList(map);
                     });
-                    return true;
-
-                }            
-                catch (Exception ex)
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    });
-                    return false;
                 }
+
             }
+            //return true;
         }
     }
 }
