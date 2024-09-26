@@ -17,11 +17,42 @@ namespace PPNewsletterFilter
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Event handler for mouse on the window
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnFullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {    
+                WindowState = WindowState.Normal;
+            }
+            else
+            {             
+                WindowState = WindowState.Maximized;
+            }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
