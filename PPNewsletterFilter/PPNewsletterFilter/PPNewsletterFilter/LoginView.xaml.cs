@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using MailKit.Net.Imap;
 using MailKit;
 using System.Windows.Input;
+using PPNewsletterFilter;
+using System.ComponentModel;
 using System.Xml.Schema;
 using System.Windows.Media;
 
@@ -14,6 +16,7 @@ namespace PPNewsletterFilter
         public LoginView()
         {
             InitializeComponent();
+            DataContext = this; // Set data context to this window for progress
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -57,27 +60,61 @@ namespace PPNewsletterFilter
 
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            string mail = txtEmail.Text;
-            string password = pwdPassword.Password;
+            WindowState = WindowState.Minimized;
+        }
 
-            //if email empty return with color
-            if (mail == "") {
-                Mail.Foreground = new SolidColorBrush(Colors.Red);
-            }else
-            {
-                Mail.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
+        private void btnFullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {    
+                WindowState = WindowState.Normal;
             }
-            //if password empty return with color
-            if (password == "")
-            {
-                Password.Foreground = new SolidColorBrush(Colors.Red);
-                return;
-            }else
-            {
-                Password.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
+            else
+            {             
+                WindowState = WindowState.Maximized;
             }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            // Show the loading overlay
+            loadingOverlay.Visibility = Visibility.Visible;
+
+            // Run long operation asynchronously
+            bool success = await Task.Run(() => ConnectToServer());
+
+            if (success)
+            {
+                // If successful, open the main window
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close(); // Close the login window
+            }
+        }
+
+        private bool ConnectToServer()
+        {
+
+                string mail = string.Empty;
+                string password = string.Empty;
+
+                this.Dispatcher.Invoke(() =>
+                {
+                    mail = txtEmail.Text;
+                    password = pwdPassword.Password;
+                });
 
             // Connect to IMAP server and authenticate
             using (var client = new ImapClient())
@@ -136,18 +173,31 @@ namespace PPNewsletterFilter
                         {
                             map.Add(message.From.ToString(), 1);
                         }
+
+                        // Progresscounter
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
+                        });
                     }
 
                     // Open MainWindow and update email list
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    mainWindow.UpdateEmailList(map);
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.UpdateEmailList(map);
+                    });
+                    return true;
 
-                    this.Close();
-                }
+                }            
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}", "Something went wrong while processing the incoming messages", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    });
+                    return false;
                 }
             }
         }
