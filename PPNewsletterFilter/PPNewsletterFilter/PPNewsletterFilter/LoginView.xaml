@@ -37,7 +37,9 @@
                        FontSize="14"
                        Grid.Column="0"
                        VerticalAlignment="center"
-                       HorizontalAlignment="center"/>
+                       HorizontalAlignment="center"
+                />
+                
             </Grid>
 
             <StackPanel Width="350"
@@ -113,14 +115,34 @@
 
         </Grid>
 
-        <Grid Name="loadingOverlay" 
-            Background="#345B49" 
+        <Grid Name="loadingOverlay"
             Visibility="Collapsed">
+            
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#2D4E3E" Offset="0" />
+                    <GradientStop Color="#44705b" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
 
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="218">
+                
+                <Image Source="images/logo.png"
+                    Width="110"
+                    Height="110"
+                />
 
-                <TextBlock Text="Loading..." Foreground="White" FontSize="20" />
-                <ProgressBar IsIndeterminate="True" Width="150" Height="20" />
+                <ProgressBar x:Name="progressBar"
+                             Width="400" Height="20"
+                             IsIndeterminate="True"
+                             Foreground="#61A888"
+                             Background="#44705b"
+                             BorderThickness="0"
+                />
+
+                <TextBlock Name="LoadingText" Foreground="White" FontSize="12" />
 
             </StackPanel>
 

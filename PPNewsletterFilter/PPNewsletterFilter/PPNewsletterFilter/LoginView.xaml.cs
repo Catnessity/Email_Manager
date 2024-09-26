@@ -5,6 +5,7 @@ using MailKit.Net.Imap;
 using MailKit;
 using System.Windows.Input;
 using PPNewsletterFilter;
+using System.ComponentModel;
 
 namespace PPNewsletterFilter
 {
@@ -13,6 +14,7 @@ namespace PPNewsletterFilter
         public LoginView()
         {
             InitializeComponent();
+            DataContext = this; // Set data context to this window for progress
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -80,13 +82,21 @@ namespace PPNewsletterFilter
                         {
                             map.Add(message.From.ToString(), 1);
                         }
+
+                        // Progresscounter
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
+                        });
                     }
+
+                    // Open MainWindow and update email list
                     this.Dispatcher.Invoke(() =>
                     {
-                        // Open MainWindow and update email list
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.UpdateEmailList(map);
                     });
+
                 }
                 return true;
             }
