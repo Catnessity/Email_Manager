@@ -7,16 +7,6 @@
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800"
         ResizeMode="NoResize"     
-        WindowStartupLocation="CenterScreen">
-
-    <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#2D4E3E" Offset="0" />
-            <GradientStop Color="#44705b" Offset="1" />
-        </LinearGradientBrush>
-    </Window.Background>
-
-        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         MouseDown="Window_MouseDown">
@@ -31,11 +21,6 @@
     
 <!--Page divided into two Rows-->
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
