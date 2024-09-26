@@ -7,12 +7,13 @@ using Org.BouncyCastle.Bcpg;
 using Org.BouncyCastle.Asn1.X509;
 using System.Security.Cryptography;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 internal class Program
 {
-    
+
     private static void Main(string[] args)
     {
-        
+
         using (var client = new ImapClient())
         {
             //Console.WriteLine("Use private password?");
@@ -34,7 +35,7 @@ internal class Program
             //}
             //else
             //{
-                var password = "C-mailT0123!";
+            var password = "C-mailT0123!";
             //}
             Console.WriteLine("Please choose the email domain you want to use:");
             Console.WriteLine("1) GMX");
@@ -81,22 +82,102 @@ internal class Program
             inbox.Open(FolderAccess.ReadWrite);
 
             Console.WriteLine("Total messages: {0}", inbox.Count);
-            for (int i = 0; i < inbox.Count; i++)
+
+
+            var NoFilterUids = inbox.Search(SearchQuery.All);
+            var searchQuery = SearchQuery.Not(
+    SearchQuery.Or(
+        SearchQuery.BodyContains("unsubscribe"),
+        SearchQuery.Or(
+            SearchQuery.BodyContains("abbestellen"),
+            SearchQuery.Or(
+                SearchQuery.BodyContains("abmelden"),
+                SearchQuery.Or(
+                    SearchQuery.BodyContains("deabonnieren"),
+                    SearchQuery.BodyContains("optout")
+                )
+            )
+        )
+    )
+);
+            //var FilteredUids = inbox.Search(searchQuery);
+
+            //// Subtract the filtered UIDs from the original UIDs using Except
+            //var uids = NoFilterUids.Except(FilteredUids).ToList();
+
+            //foreach (var uid in uids)
+            //{
+            var items = inbox.Fetch(0, -1, MessageSummaryItems.Envelope | MessageSummaryItems.Headers);
+            List<string> FoundFromList = new List<string>();
+            foreach (var item in items)
             {
-                var message = inbox.GetMessage(i);
-                if (message.From.ToString().Contains("fredi.f5000@gmail.com"))
+                var fromAddress = item.Envelope.From.Mailboxes.FirstOrDefault()?.Address;
+                var listUnsubscribeHeader = item.Headers["List-Unsubscribe"];
+
+
+                if (FoundFromList.Contains(fromAddress))
                 {
-                    inbox.Store(i, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
-                    inbox.Expunge();
-                    Console.WriteLine("it worked... or did it?");
+
                 }
-                Console.WriteLine(message.Subject);
+                else if (listUnsubscribeHeader != null)
+                {
+                    Console.WriteLine(listUnsubscribeHeader);
+                    FoundFromList.Add(fromAddress);
+                }
+
             }
+
+            //Console.WriteLine(inbox.GetMessage(uid).Headers["List-Unsubscribe"].ToString());
+            //Console.WriteLine("Email Number: " + uid.ToString());
+            //List<string> links = ExtractLinksFromMailBody(inbox.GetMessage(uid).HtmlBody.ToString());
+            //foreach (var link in links)
+            //{
+            //    Console.WriteLine(link);
+            //}
+            Console.WriteLine("\n\n\n");
+            //}
+
+            //for (int i = 0; i < inbox.Count; i++)
+            //{
+            //    var message = inbox.GetMessage(i);
+
+            //    if (message.From.ToString().Contains("fredi.f5000@gmail.com"))
+            //    {
+            //        inbox.Store(i, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
+            //        inbox.Expunge();
+            //        Console.WriteLine("it worked... or did it?");
+            //    }
+            //    Console.WriteLine(message.Subject);
+            //}
 
 
 
             client.Disconnect(true);
         }
 
+
     }
+    public static List<string> ExtractLinksFromMailBody(string text)
+    {
+        // Regex pattern to match HTTP/HTTPS URLs
+        string pattern = @"(http[s]?://[^\s]+)";
+
+        // Create a regex object
+        Regex regex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        // Find all matches in the input text
+        MatchCollection matches = regex.Matches(text);
+
+        // Initialize a list to store the links
+        List<string> links = new List<string>();
+
+        // Add each match (link) to the list
+        foreach (Match match in matches)
+        {
+            links.Add(match.Value);
+        }
+
+        return links;
+    }
+
 }
