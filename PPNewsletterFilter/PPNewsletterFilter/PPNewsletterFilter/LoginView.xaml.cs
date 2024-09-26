@@ -16,6 +16,7 @@ namespace PPNewsletterFilter
     public partial class LoginView : Window
     {
         static bool connectedToServer;
+        Dictionary<string, int> map = new Dictionary<string, int>();
 
         public LoginView()
         {
@@ -68,6 +69,7 @@ namespace PPNewsletterFilter
         {
             // Run long operation asynchronously
             //bool success = await Task.Run(() => ConnectToServer());
+            
             if (Application.Current.Dispatcher.CheckAccess())
             {
                 ConnectToServer();
@@ -78,17 +80,6 @@ namespace PPNewsletterFilter
                 Application.Current.Dispatcher.BeginInvoke((Action)(() => ConnectToServer()));
             }
 
-
-            if (connectedToServer)
-            {
-                //Thread.Sleep(2000);
-                //await Task.Run(() => StartLoading());
-
-                // If successful, open the main window
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close(); // Close the login window
-            }
         }
 
         //async switchToMainWindow((object sender, RoutedEventArgs e){
@@ -110,6 +101,7 @@ namespace PPNewsletterFilter
             if (mail == "")
             {
                 Mail.Foreground = new SolidColorBrush(Colors.Red);
+                
             }
             else
             {
@@ -120,6 +112,7 @@ namespace PPNewsletterFilter
             {
                 Password.Foreground = new SolidColorBrush(Colors.Red);
                 connectedToServer = false;
+                return;
             }
             else
             {
@@ -168,16 +161,55 @@ namespace PPNewsletterFilter
                 {
                     // The Inbox folder is always available on all IMAP servers...
                     var inbox = client.Inbox;
-                    inbox.Open(FolderAccess.ReadWrite);
+                    //if (Application.Current.Dispatcher.CheckAccess())
+                    //{
+                        //StartLoading(client, inbox);
+                        loadingOverlay.Visibility = Visibility.Visible;
+                        inbox.Open(FolderAccess.ReadWrite);
+                        var MessageCount = inbox.Count;
+                        map = new Dictionary<string, int>();
 
-                    await Task.Run(() => StartLoading(client, inbox));
+                        for (int i = 0; i < inbox.Count; i++)
+                        {
+                            var message = inbox.GetMessage(i);
+                            if (map.ContainsKey(message.From.ToString()))
+                            {
+                                map[message.From.ToString()]++;
+                            }
+                            else
+                            {
+                                map.Add(message.From.ToString(), 1);
+                                // Progresscounter
+
+                                LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
+                            }
+
+                        }
+                //}
+                    //else
+                    //{
+                    //    // Otherwise, marshal the function back to the UI thread asynchronously
+                    //    Application.Current.Dispatcher.BeginInvoke((Action)(() => StartLoading(client, inbox)));
+                    //    return;
+                    //}
+                    //if (Application.Current.Dispatcher.CheckAccess())
+                    //{
+                    //    ShowMainWindow();
+                    //}
+                    //else
+                    //{
+                    //    // Otherwise, marshal the function back to the UI thread asynchronously
+                    //    Application.Current.Dispatcher.BeginInvoke((Action)(() => ShowMainWindow()));
+                    //}
+
+
                     connectedToServer = true;
 
                 }
                 catch (Exception ex)
                 {
-
-                    MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Error: {ex.Message}", "Something went wrong while processing the incoming messages", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                     connectedToServer = false;
                 }
             }
@@ -189,9 +221,10 @@ namespace PPNewsletterFilter
 
         private async void StartLoading(ImapClient client, IMailFolder inbox)
         {
+            loadingOverlay.Visibility = Visibility.Visible;
             inbox.Open(FolderAccess.ReadWrite);
             var MessageCount = inbox.Count;
-            Dictionary<string, int> map = new Dictionary<string, int>();
+            map = new Dictionary<string, int>();
 
             for (int i = 0; i < inbox.Count; i++)
             {
@@ -204,22 +237,22 @@ namespace PPNewsletterFilter
                 {
                     map.Add(message.From.ToString(), 1);
                     // Progresscounter
-                    this.Dispatcher.Invoke(() =>
-                    {
+
                         LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
-                    });
-
-
-                    // Open MainWindow and update email list
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.UpdateEmailList(map);
-                    });
                 }
 
             }
             //return true;
+        }
+        public async void ShowMainWindow()
+        {
+
+            // If successful, open the main window
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            // Open MainWindow and update email list
+            mainWindow.UpdateEmailList(map);
+            this.Close(); // Close the login window
         }
     }
 }
