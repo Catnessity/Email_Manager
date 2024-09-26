@@ -38,18 +38,6 @@ namespace PPNewsletterFilter
             WindowState = WindowState.Minimized;
         }
 
-        private void btnFullScreen_Click(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {    
-                WindowState = WindowState.Normal;
-            }
-            else
-            {             
-                WindowState = WindowState.Maximized;
-            }
-        }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -58,11 +46,6 @@ namespace PPNewsletterFilter
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
         }
 
         private void btnFullScreen_Click(object sender, RoutedEventArgs e)
@@ -75,16 +58,6 @@ namespace PPNewsletterFilter
             {             
                 WindowState = WindowState.Maximized;
             }
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void btnInfo_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
