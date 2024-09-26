@@ -111,7 +111,7 @@ namespace PPNewsletterFilter
                 {
                     //MessageBox.Show($"Please check your email.", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Warning);
                     feedback.Text = "Please check your email, either there is a typo or your provider is not supported.";
-                    return;
+                    return false;
                 }
 
                 //try to connect to the imap server with the given password
@@ -124,7 +124,7 @@ namespace PPNewsletterFilter
                 {
                     //MessageBox.Show($"Please check your credentials.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                     feedback.Text = "The connection to the server or the authentication failed. \n Check your password and try again.";
-                    return;
+                    return false ;
                 }
 
                 try
