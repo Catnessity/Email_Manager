@@ -1,6 +1,20 @@
 document.addEventListener('DOMContentLoaded', event =>{
-    setupGame();
-})
+
+    gameLoop();  // Start the loop
+
+});
+
+async function gameLoop() {
+    await setupGame();  // Wait for the async setupGame to complete
+    setTimeout(() => {
+        resetGame();  // After 5 seconds, reset the game
+        gameLoop();   // Then restart the loop
+    }, 5000);
+}
+
+function resetGame(){
+    document.getElementById("DownloadGame").innerHTML="";
+}
 
 async function setupGame(){
     let gameboard = document.getElementById("DownloadGame");
