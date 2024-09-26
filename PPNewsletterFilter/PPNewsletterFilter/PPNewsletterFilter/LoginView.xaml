@@ -213,7 +213,8 @@
 
 
             <!--Mail Block-->
-            <TextBlock  Text="Mail"
+            <TextBlock  Name="Mail"
+                    Text="Mail"
                     Foreground="WhiteSmoke"
                     FontSize="14"
                     FontWeight="Medium"
@@ -252,6 +253,14 @@
                     BorderThickness="2"
                     VerticalContentAlignment="Center">
             </PasswordBox>
+
+            <TextBlock  Name="feedback"
+                    Text=""
+                    Foreground="Red"
+                    FontSize="8"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Margin="10,5,5,20"/>
 
             <!--login Button-->
             <Button x:Name="btnLogin"
