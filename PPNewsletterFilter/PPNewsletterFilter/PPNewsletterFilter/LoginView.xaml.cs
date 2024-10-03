@@ -11,107 +11,44 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using System.Printing;
 
+
 namespace PPNewsletterFilter
 {
+
     public partial class LoginView : Window
     {
-        static bool connectedToServer;
-        Dictionary<string, int> map = new Dictionary<string, int>();
 
         public LoginView()
         {
             InitializeComponent();
-            DataContext = this; // Set data context to this window for progress
         }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            // Event handler for mouse on the window
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
+            ConnectToServer();
         }
 
-        private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void btnInfo_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnFullScreen_Click(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-            }
-        }
-
-        private async void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            // Run long operation asynchronously
-            //bool success = await Task.Run(() => ConnectToServer());
-            
-            if (Application.Current.Dispatcher.CheckAccess())
-            {
-                ConnectToServer();
-            }
-            else
-            {
-                // Otherwise, marshal the function back to the UI thread asynchronously
-                Application.Current.Dispatcher.BeginInvoke((Action)(() => ConnectToServer()));
-            }
-
-        }
-
-        //async switchToMainWindow((object sender, RoutedEventArgs e){
-
-        //}
-
-        private async void ConnectToServer()
+        private void ConnectToServer()
         {
 
             string mail = string.Empty;
             string password = string.Empty;
-            //this.Dispatcher.Invoke(() =>
-            //        {
             mail = txtEmail.Text;
             password = pwdPassword.Password;
-            //});
 
             //if email empty return with color
             if (mail == "")
             {
                 Mail.Foreground = new SolidColorBrush(Colors.Red);
-                
             }
             else
             {
                 Mail.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
             }
+
             //if password empty return with color
             if (password == "")
             {
                 Password.Foreground = new SolidColorBrush(Colors.Red);
-                connectedToServer = false;
                 return;
             }
             else
@@ -120,7 +57,7 @@ namespace PPNewsletterFilter
             }
 
             // Connect to IMAP server and authenticate
-            using (var client = new ImapClient())
+            using (Data.Client = new ImapClient())
             {
                 var imap_address = "";
 
@@ -139,120 +76,87 @@ namespace PPNewsletterFilter
                 }
                 else
                 {
-                    //MessageBox.Show($"Please check your email.", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Warning);
                     feedback.Text = "Please check your email, either there is a typo or your provider is not supported.";
-                    connectedToServer = false;
+                    return;
                 }
 
                 //try to connect to the imap server with the given password
                 try
                 {
-                    client.Connect(imap_address, 993, true);
-                    client.Authenticate(mail, password);
+                    Data.Client.Connect(imap_address, 993, true);
+                    Data.Client.Authenticate(mail, password);
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show($"Please check your credentials.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                     feedback.Text = "The connection to the server or the authentication failed. \n Check your password and try again.";
-                    connectedToServer = false;
+                    return;
                 }
 
                 try
                 {
-                    // The Inbox folder is always available on all IMAP servers...
-                    var inbox = client.Inbox;
-                    //if (Application.Current.Dispatcher.CheckAccess())
-                    //{
-                        //StartLoading(client, inbox);
-                        loadingOverlay.Visibility = Visibility.Visible;
-                        inbox.Open(FolderAccess.ReadWrite);
-                        var MessageCount = inbox.Count;
-                        map = new Dictionary<string, int>();
-
-                        for (int i = 0; i < inbox.Count; i++)
-                        {
-                            var message = inbox.GetMessage(i);
-                            if (map.ContainsKey(message.From.ToString()))
-                            {
-                                map[message.From.ToString()]++;
-                            }
-                            else
-                            {
-                                map.Add(message.From.ToString(), 1);
-                                // Progresscounter
-
-                                LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
-                            }
-
-                        }
-                //}
-                    //else
-                    //{
-                    //    // Otherwise, marshal the function back to the UI thread asynchronously
-                    //    Application.Current.Dispatcher.BeginInvoke((Action)(() => StartLoading(client, inbox)));
-                    //    return;
-                    //}
-                    //if (Application.Current.Dispatcher.CheckAccess())
-                    //{
-                    //    ShowMainWindow();
-                    //}
-                    //else
-                    //{
-                    //    // Otherwise, marshal the function back to the UI thread asynchronously
-                    //    Application.Current.Dispatcher.BeginInvoke((Action)(() => ShowMainWindow()));
-                    //}
-
-
-                    connectedToServer = true;
-
+                    ShowLoadingView();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error: {ex.Message}", "Something went wrong while processing the incoming messages", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //MessageBox.Show($"Error: {ex.Message}", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                    connectedToServer = false;
+                    return;
                 }
             }
 
-
         }
 
-
-
-        private async void StartLoading(ImapClient client, IMailFolder inbox)
+        public void ShowLoadingView()
         {
-            loadingOverlay.Visibility = Visibility.Visible;
-            inbox.Open(FolderAccess.ReadWrite);
-            var MessageCount = inbox.Count;
-            map = new Dictionary<string, int>();
-
-            for (int i = 0; i < inbox.Count; i++)
-            {
-                var message = inbox.GetMessage(i);
-                if (map.ContainsKey(message.From.ToString()))
-                {
-                    map[message.From.ToString()]++;
-                }
-                else
-                {
-                    map.Add(message.From.ToString(), 1);
-                    // Progresscounter
-
-                        LoadingText.Text = "Loading... " + (i + 1).ToString() + " / " + inbox.Count.ToString();
-                }
-
-            }
-            //return true;
-        }
-        public async void ShowMainWindow()
-        {
-
-            // If successful, open the main window
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            // Open MainWindow and update email list
-            mainWindow.UpdateEmailList(map);
+            LoadingView loadingview = new LoadingView();
             this.Close(); // Close the login window
+            loadingview.Show();
+
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Event handler for mouse on the window
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void btnFullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
+        }
+
+       
+
+    
+
+   
+
     }
 }

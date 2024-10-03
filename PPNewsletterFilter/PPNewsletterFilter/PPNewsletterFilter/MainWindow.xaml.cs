@@ -18,7 +18,7 @@ namespace PPNewsletterFilter
     /// </summary>
     public partial class MainWindow : Window
     {
-	public ObservableCollection<EmailInfo> Emails { get; set; }
+        public ObservableCollection<EmailInfo> Emails { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace PPNewsletterFilter
 
         public void UpdateEmailList(Dictionary<string, int> emailMap)
         {
-	    Emails.Clear();
+            Emails.Clear();
             foreach (var pair in emailMap)
             {
                 Emails.Add(new EmailInfo { Sender = pair.Key, Count = pair.Value });
@@ -39,7 +39,7 @@ namespace PPNewsletterFilter
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Event handler for mouse on the window
-            if(e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
@@ -89,10 +89,10 @@ namespace PPNewsletterFilter
     }
 
     public class EmailInfo
-        {
-            public string? Sender { get; set; }
-            public int Count { get; set; }
+    {
+        public string? Sender { get; set; }
+        public int Count { get; set; }
     }
-    
 
-    }
+
+}
