@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', event =>{
-
     gameLoop();  // Start the loop
-
 });
 
 async function gameLoop() {
@@ -37,7 +35,7 @@ async function setupGame(){
 async function pathExists(path){
     let res;
     try {
-       res = await fetch("http://localhost:8080/" + path,
+       res = await fetch("" + path,
             { method: "HEAD" }
         );
     } catch (error) {
