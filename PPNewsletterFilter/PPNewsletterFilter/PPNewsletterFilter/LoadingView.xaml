@@ -10,8 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         Visibility="Visible"
-        WindowStyle="None"
-        >
+        WindowStyle="None">
 
     <!--Gradient Background-->
     <Window.Background>

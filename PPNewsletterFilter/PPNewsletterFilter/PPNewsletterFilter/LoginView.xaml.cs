@@ -10,6 +10,7 @@ using System.Xml.Schema;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Printing;
+using System.Windows.Media.Imaging;
 
 
 namespace PPNewsletterFilter
@@ -57,8 +58,8 @@ namespace PPNewsletterFilter
             }
 
             // Connect to IMAP server and authenticate
-            using (Data.Client = new ImapClient())
-            {
+            Data.Client = new ImapClient();
+
                 var imap_address = "";
 
                 //get the corret imap address based on the given email provider
@@ -101,8 +102,8 @@ namespace PPNewsletterFilter
                     MessageBox.Show($"Error: {ex.Message}", "Something went wrong while processing the incoming messages", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-            }
 
+            
         }
 
         public void ShowLoadingView()
@@ -151,12 +152,53 @@ namespace PPNewsletterFilter
                 WindowState = WindowState.Maximized;
             }
         }
+        
+        private void PasswordField_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
+        }
 
-       
+        //private void ShowPassword_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    pwdPasswordShow.Text = pwdPassword.Password;
+        //    pwdPassword.Visibility = Visibility.Hidden;
+        //    pwdPasswordShow.Visibility = Visibility.Visible;
+        //}
 
-    
+        //private void HidePassword_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    pwdPassword.Password = pwdPasswordShow.Text;
+        //    pwdPassword.Visibility = Visibility.Visible;
+        //    pwdPasswordShow.Visibility = Visibility.Hidden;
+        //}
 
-   
+        private bool isPasswordVisible = false;
+
+        private void TogglePasswordVisibility(object sender, MouseButtonEventArgs e)
+        {
+            if (isPasswordVisible)
+            {
+                // Hide the password
+                pwdPassword.Password = pwdPasswordShow.Text;
+                pwdPassword.Visibility = Visibility.Visible;
+                pwdPasswordShow.Visibility = Visibility.Hidden;
+                imgTogglePassword.Source = new BitmapImage(new Uri("images/eye_closed.png", UriKind.Relative)); // Change to "eye-closed" image
+                isPasswordVisible = false;
+            }
+            else
+            {
+                // Show the password
+                pwdPasswordShow.Text = pwdPassword.Password;
+                pwdPassword.Visibility = Visibility.Hidden;
+                pwdPasswordShow.Visibility = Visibility.Visible;
+                imgTogglePassword.Source = new BitmapImage(new Uri("images/eye_open.png", UriKind.Relative)); // Change to "eye-open" image
+                isPasswordVisible = true;
+            }
+        }
+
 
     }
 }
