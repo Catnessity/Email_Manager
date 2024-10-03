@@ -1,0 +1,60 @@
+<Window x:Class="PPNewsletterFilter.LoadingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PPNewsletterFilter"
+        mc:Ignorable="d"
+        Title="LoadingView" Height="450" Width="800"
+        ResizeMode="NoResize"     
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Visibility="Visible"
+        WindowStyle="None">
+
+    <!--Gradient Background-->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#2D4E3E" Offset="0" />
+            <GradientStop Color="#44705b" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+    
+<!--Page divided into two Rows-->
+    <Grid>
+        
+  
+    <Grid Name="loadingOverlay"
+    Visibility="Visible">
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#2D4E3E" Offset="0" />
+                <GradientStop Color="#44705b" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="218">
+
+            <Image Source="images/logo.png"
+            Width="110"
+            Height="110"
+        />
+
+            <ProgressBar x:Name="progressBar"
+                     Width="400" Height="20"
+                     IsIndeterminate="True"
+                     Foreground="#61A888"
+                     Background="#44705b"
+                     BorderThickness="0"
+        />
+
+            <TextBlock Name="LoadingText" Foreground="White" FontSize="12" />
+
+        </StackPanel>
+
+    </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,44 @@
+.gamedescription {
+    padding: 2rem;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+}
+
+.gamefield {
+    min-height: 10vh;
+    min-width: 10vh;
+    text-align: center;
+    color: white;
+    /* width: auto; */
+    height: auto;
+    overflow-y: hidden;
+    background-size: cover;
+
+}
+
+.gamefield img {
+    width: 100%; /* Make the image fill the width of the column */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the area while maintaining aspect ratio */
+    min-height: 10vh;
+}
+
+#DownlaodGame {
+    display: grid;
+    background-color: black;
+}
+
+.download-btn-light {
+    background-color: transparent;
+    color: #ffffff7a;
+    font-weight: lighter;
+    font-size: small;
+}
+.download-btn-dark {
+    background-color: transparent;
+    color: #00000075;
+    font-weight: lighter;
+    font-size: small;
+}
+

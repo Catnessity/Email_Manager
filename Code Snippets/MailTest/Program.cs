@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MimeKit;
 using MailKit;
 using MailKit.Search;
@@ -179,5 +179,4 @@ internal class Program
 
         return links;
     }
-
 }
