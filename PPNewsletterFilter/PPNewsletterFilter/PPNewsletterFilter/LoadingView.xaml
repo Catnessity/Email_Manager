@@ -14,9 +14,9 @@
 
     <!--Gradient Background-->
     <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#2D4E3E" Offset="0" />
-            <GradientStop Color="#44705b" Offset="1" />
+        <LinearGradientBrush StartPoint="0.8,0.3" EndPoint="0.9,1">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="DarkGray" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
     
@@ -28,9 +28,9 @@
     Visibility="Visible">
 
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#2D4E3E" Offset="0" />
-                <GradientStop Color="#44705b" Offset="1" />
+            <LinearGradientBrush StartPoint="0.8,0.3" EndPoint="0.9,1">
+                <GradientStop Color="White" Offset="0" />
+                <GradientStop Color="DarkGray" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -46,12 +46,12 @@
             <ProgressBar x:Name="progressBar"
                      Width="400" Height="20"
                      IsIndeterminate="True"
-                     Foreground="#61A888"
-                     Background="#44705b"
+                     Foreground="#ff8900"
+                     Background="#ffb258"
                      BorderThickness="0"
         />
 
-            <TextBlock Name="LoadingText" Foreground="White" FontSize="12" />
+                <TextBlock Name="LoadingText" Foreground="#1a1a1a" FontSize="12" />
 
         </StackPanel>
 
