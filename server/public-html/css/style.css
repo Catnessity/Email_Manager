@@ -215,7 +215,7 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-color: #12723d;
+    background-color: #ffbe45;
     height: auto;
     background-size: 100%;
 }
@@ -239,7 +239,7 @@ button {
 
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
-    color: #02a763;
+    color: #444444;
 }
 
 .navbar-brand {
@@ -299,7 +299,7 @@ button {
     width: 100%;
     float: left;
     font-size: 16px;
-    background-color: #12723d;
+    background-color: #ffbe45;
     color: #fefefd;
     text-align: center;
     padding: 12px;
@@ -317,7 +317,7 @@ button {
     height: 30px;
     border-radius: 100%;
     background-color: #ffffff;
-    border: 5px solid #12723d;
+    border: 5px solid #ffbe45;
 }
 
 .carousel-indicators .active {
@@ -386,7 +386,7 @@ button {
     float: left;
     font-size: 18px;
     color: #fefefd;
-    background-color: #12723d;
+    background-color: #ffbe45;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -465,7 +465,7 @@ figure:hover+span {
     opacity: 1;
     font-size: 40px;
     color: #ffffff;
-    background-color: #12723d;
+    background-color: #ffbe45;
     border-radius: 5px;
     margin: 0 auto;
     text-align: center;
@@ -521,11 +521,11 @@ figure:hover+span {
 }
 
 .market_text:hover {
-    color: #12723d;
+    color: #ffbe45;
 }
 
 .market_text.active {
-    color: #12723d;
+    color: #ffbe45;
 }
 
 .padding10 {
@@ -561,7 +561,7 @@ figure:hover+span {
 
 .seemore_bt a:hover {
     color: #fefefd;
-    background-color: #12723d;
+    background-color: #ffbe45;
 }
 
 
@@ -627,7 +627,7 @@ figure:hover+span {
     float: left;
     font-size: 18px;
     color: #fefefd;
-    background-color: #12723d;
+    background-color: #ffbe45;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -674,12 +674,12 @@ figure:hover+span {
 
 .date_text a:hover {
     color: #fefefd;
-    background-color: #12723d;
+    background-color: #ffbe45;
 }
 
 .date_text.active a {
     color: #fefefd;
-    background-color: #12723d;
+    background-color: #ffbe45;
 }
 
 
@@ -771,7 +771,7 @@ figure:hover+span {
     width: 100%;
     float: left;
     font-size: 22px;
-    color: #12723d;
+    color: #ffbe45;
     text-transform: uppercase;
 }
 
@@ -804,7 +804,7 @@ figure:hover+span {
     opacity: 1;
     font-size: 18px;
     color: #ffffff;
-    background-color: #12723d;
+    background-color: #ffbe45;
     border-radius: 100%;
     margin: 0 auto;
     text-align: center;
@@ -861,7 +861,7 @@ figure:hover+span {
 .mail_section_1 {
     width: 50%;
     float: left;
-    background-color: #12723d;
+    background-color: #ffbe45;
     padding: 0px 40px 40px 40px;
 }
 
@@ -968,7 +968,7 @@ textarea#comment.massage-bt::placeholder {
 }
 
 .location_text li a:hover {
-    color: #12723d;
+    color: #ffbe45;
 }
 
 .padding_left_10 {
@@ -1009,7 +1009,7 @@ textarea#comment.massage-bt::placeholder {
 }
 
 .footer_social_icon li a:hover {
-    background-color: #12723d;
+    background-color: #ffbe45;
     color: #ffffff;
 }
 
@@ -1040,7 +1040,7 @@ textarea#comment.massage-bt::placeholder {
 }
 
 .copyright_text a:hover {
-    color: #12723d;
+    color: #ffbe45;
 }
 
 
