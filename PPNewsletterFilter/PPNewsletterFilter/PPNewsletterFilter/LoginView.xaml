@@ -146,7 +146,7 @@
                     Margin="225,5,225,0">
 
                 <!--Logo Image-->
-                <Image Source="images/logo+text.png"
+                <Image Source="images/logo_text.png"
                     Width="200"
                     Height="110"/>
                 <Button x:Name="OpenPopup" 

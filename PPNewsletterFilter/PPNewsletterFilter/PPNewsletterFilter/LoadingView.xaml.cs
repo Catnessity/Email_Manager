@@ -170,7 +170,7 @@ namespace PPNewsletterFilter
             // Open MainWindow and update email list
             mainWindow.Show();
             mainWindow.UpdateEmailList(Data.map);
-            //this.Close();
+            this.Close();
         }
 
 

@@ -57,7 +57,7 @@ internal class Program
                     email = "c.mail.testmail@gmail.com";
                     break;
                 case '3':
-                    imap_address = "imap-mail.outlook.com";
+                    imap_address = "outlook.office365.com";
                     email = "ctestlinz@outlook.com";
                     break;
                 //case '4':

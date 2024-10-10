@@ -75,7 +75,7 @@ namespace PPNewsletterFilter
                 }
                 else if (mail.Contains("@outlook.") || password.Contains("@hotmail"))
                 {
-                    imap_address = "imap-mail.outlook.com";
+                    imap_address = "outlook.office365.com";
                 }
                 else
                 {

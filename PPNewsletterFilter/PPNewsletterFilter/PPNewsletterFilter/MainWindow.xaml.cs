@@ -117,17 +117,15 @@ namespace PPNewsletterFilter
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            //Stopwatch stopwatch = new Stopwatch();
-            //stopwatch.Start();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             if (sender is Button button && button.CommandParameter is List<UniqueId> uids)
             {
 
                 var inbox = Data.Client.Inbox;
 
-                foreach (var uid in uids)
-                {
-                    inbox.Store(uid, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
-                }
+                inbox.Store(uids, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
+                
                 inbox.Expunge();
 
             }
@@ -139,13 +137,13 @@ namespace PPNewsletterFilter
                 Emails.Remove(selectedItem);
             }
 
-            //// Stop the stopwatch
-            //stopwatch.Stop();
+            // Stop the stopwatch
+            stopwatch.Stop();
 
-            //// Get the elapsed time in milliseconds
-            //long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+            // Get the elapsed time in milliseconds
+            long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
 
-            //filterKeyWord.Text = $"Elapsed time: {elapsedMilliseconds} milliseconds";
+            filterKeyWord.Text = $"Elapsed time: {elapsedMilliseconds} milliseconds";
         }
 
     }
