@@ -202,7 +202,8 @@
             </Grid>
 
             <!--DataGrid Display Second Column-->
-            <DataGrid Grid.Row="1"
+            <DataGrid x:Name="EmailDataGrid"
+                      Grid.Row="1"
                       Grid.Column="2"
                       Background="White"
                       BorderBrush="White"
@@ -389,7 +390,21 @@
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <!-- Start Button -->
                                                         <Button Content="Continue" Width="100px" Padding="10" Background="#61A888" Foreground="White" Click="btnDelete_Click" Margin="10, 0"
-                                                            CommandParameter="{Binding Sender}"/>
+                                                            CommandParameter="{Binding UniqueIDs}">
+                                                            <Button.Triggers>
+                                                                <EventTrigger RoutedEvent="Button.Click">
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <BooleanAnimationUsingKeyFrames 
+                                                                                 Storyboard.TargetName="PopUp_DeleteWarning" 
+                                                                                 Storyboard.TargetProperty="IsOpen">
+                                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False" />
+                                                                            </BooleanAnimationUsingKeyFrames>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </EventTrigger>
+                                                            </Button.Triggers>
+                                                        </Button>
                                                         <!-- Close Button -->
                                                         <Button Content="Cancel" Width="100px" Padding="10" Background="#bf112e" Foreground="White">
                                                             <Button.Triggers>

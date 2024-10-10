@@ -31,18 +31,18 @@ namespace PPNewsletterFilter
 
         }
 
-        public void UpdateEmailList(List<Tuple<string, int, bool, string>> emailMap)
+        public void UpdateEmailList(List<Tuple<string, int, bool, string, List<UniqueId>>> emailMap)
         {
             Emails.Clear();
             foreach (var entry in emailMap)
             {
                 if (entry.Item3)
                 {
-                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4 });
+                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5 });
                 }
                 else
                 {
-                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden });
+                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5 });
                 }
             }
         }
@@ -117,40 +117,35 @@ namespace PPNewsletterFilter
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button && button.CommandParameter is string adressDelete)
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+            if (sender is Button button && button.CommandParameter is List<UniqueId> uids)
             {
 
                 var inbox = Data.Client.Inbox;
-                for (int i = 0; i < inbox.Count; i++)
-                {
-                    var message = inbox.GetMessage(i);
 
-                    if (message.From.ToString().Contains(adressDelete))
-                    {
-                        inbox.Store(i, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
-                    }
+                foreach (var uid in uids)
+                {
+                    inbox.Store(uid, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
                 }
                 inbox.Expunge();
 
-                var popup = FindParentPopup(button);
-                if (popup != null)
-                {
-                    popup.IsOpen = false; // Close the popup after the delete logic is complete
-                }
-
             }
+            var selectedItem = EmailDataGrid.SelectedItem as EmailInfo;
 
-        }
-        private Popup FindParentPopup(DependencyObject child)
-        {
-            while (child != null)
+            if (selectedItem != null)
             {
-                if (child is Popup popup)
-                    return popup;
-
-                child = VisualTreeHelper.GetParent(child);
+                // Remove the selected item from the collection
+                Emails.Remove(selectedItem);
             }
-            return null;
+
+            //// Stop the stopwatch
+            //stopwatch.Stop();
+
+            //// Get the elapsed time in milliseconds
+            //long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+
+            //filterKeyWord.Text = $"Elapsed time: {elapsedMilliseconds} milliseconds";
         }
 
     }
@@ -161,6 +156,7 @@ namespace PPNewsletterFilter
         public int Count { get; set; }
         public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Visible;
         public string? UnsubscribeLink { get; set; }
+        public List<UniqueId> UniqueIDs { get; set; }
 
     }
 

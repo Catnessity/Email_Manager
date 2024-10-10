@@ -72,89 +72,20 @@ internal class Program
             client.Connect(imap_address, 993, true);
             client.Authenticate(email, password);
 
-
-
-
-
-
-            // The Inbox folder is always available on all IMAP servers...
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadWrite);
 
-            Console.WriteLine("Total messages: {0}", inbox.Count);
+            var summaries = inbox.Fetch(0, -1, MessageSummaryItems.UniqueId);
+            int messageCount = inbox.Count;
 
-
-            var NoFilterUids = inbox.Search(SearchQuery.All);
-            var searchQuery = SearchQuery.Not(
-    SearchQuery.Or(
-        SearchQuery.BodyContains("unsubscribe"),
-        SearchQuery.Or(
-            SearchQuery.BodyContains("abbestellen"),
-            SearchQuery.Or(
-                SearchQuery.BodyContains("abmelden"),
-                SearchQuery.Or(
-                    SearchQuery.BodyContains("deabonnieren"),
-                    SearchQuery.BodyContains("optout")
-                )
-            )
-        )
-    )
-);
-            //var FilteredUids = inbox.Search(searchQuery);
-
-            //// Subtract the filtered UIDs from the original UIDs using Except
-            //var uids = NoFilterUids.Except(FilteredUids).ToList();
-
-            //foreach (var uid in uids)
-            //{
-            var items = inbox.Fetch(0, -1, MessageSummaryItems.Envelope | MessageSummaryItems.Headers);
-            List<string> FoundFromList = new List<string>();
-            foreach (var item in items)
+            for (int i = 0; i < messageCount; i++)
             {
-                var fromAddress = item.Envelope.From.Mailboxes.FirstOrDefault()?.Address;
-                var listUnsubscribeHeader = item.Headers["List-Unsubscribe"];
-
-
-                if (FoundFromList.Contains(fromAddress))
-                {
-
-                }
-                else if (listUnsubscribeHeader != null)
-                {
-                    Console.WriteLine(fromAddress);
-                    Console.WriteLine(listUnsubscribeHeader);
-                    Console.WriteLine("\n\n\n\n");
-                    FoundFromList.Add(fromAddress);
-                }
-
+                Console.WriteLine(summaries[i].UniqueId);
             }
 
-            //Console.WriteLine(inbox.GetMessage(uid).Headers["List-Unsubscribe"].ToString());
-            //Console.WriteLine("Email Number: " + uid.ToString());
-            //List<string> links = ExtractLinksFromMailBody(inbox.GetMessage(uid).HtmlBody.ToString());
-            //foreach (var link in links)
-            //{
-            //    Console.WriteLine(link);
-            //}
-            Console.WriteLine("\n\n\n");
-            //}
-
-            //for (int i = 0; i < inbox.Count; i++)
-            //{
-            //    var message = inbox.GetMessage(i);
-
-            //    if (message.From.ToString().Contains("fredi.f5000@gmail.com"))
-            //    {
-            //        inbox.Store(i, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
-            //        inbox.Expunge();
-            //        Console.WriteLine("it worked... or did it?");
-            //    }
-            //    Console.WriteLine(message.Subject);
-            //}
 
 
 
-            client.Disconnect(true);
         }
 
 

@@ -13,6 +13,7 @@ using System.Printing;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PPNewsletterFilter
 {
@@ -54,17 +55,18 @@ namespace PPNewsletterFilter
         async Task StartLoading()
         {
             var inbox = Data.Client.Inbox;
-            Data.map = new List<Tuple<string, int, bool, string>>();
+            Data.map = new List<Tuple<string, int, bool, string, List<UniqueId>>>();
             inbox.Open(FolderAccess.ReadWrite);
             int messageCount = inbox.Count;
 
             // Set ProgressBar maximum value based on message count
             progressBar.Maximum = messageCount;
-
+            var summaries = inbox.Fetch(0, -1, MessageSummaryItems.UniqueId);
             for (int i = 0; i < messageCount; i++)
             {
                 // Fetch email message asynchronously
                 var message = await Task.Run(() => inbox.GetMessage(i));
+                var uid = summaries[i].UniqueId;
                 var sender = message.From.ToString();
                 var listUnsubscribeHeader = message.Headers["List-Unsubscribe"];
                 string unsubscribeLink = "";
@@ -75,12 +77,15 @@ namespace PPNewsletterFilter
                 var existingEntry = Data.map.FirstOrDefault(x => x.Item1 == sender);
                 if (existingEntry != null)
                 {
+                    List<UniqueId> existingUids = existingEntry.Item5;
+                    existingUids.Add(uid);
                     // Update the existing entry
-                    var updatedEntry = new Tuple<string, int, bool, string>(
+                    var updatedEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
                         sender,
                         existingEntry.Item2 + 1,  // Increment the count
                         existingEntry.Item3 || listUnsubscribeHeader != null,  // Update if newsletter exists
-                        unsubscribeLink ?? existingEntry.Item4  // Update the unsubscribe header if available
+                        unsubscribeLink ?? existingEntry.Item4,  // Update the unsubscribe header if available
+                        existingUids
                     );
 
                     // Replace the old entry with the updated one
@@ -88,12 +93,15 @@ namespace PPNewsletterFilter
                 }
                 else
                 {
+                    List<UniqueId> list = new List<UniqueId>();
+                    list.Add(uid);
                     // Create a new entry if the sender is not in the map yet
-                    var newEntry = new Tuple<string, int, bool, string>(
+                    var newEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
                         sender,
                         1,  // Start with a count of 1
                         listUnsubscribeHeader != null,  // Newsletter status
-                        unsubscribeLink // Store the unsubscribe header if available
+                        unsubscribeLink, // Store the unsubscribe header if available
+                        list
                     );
                     Data.map.Add(newEntry);
                 }
@@ -122,23 +130,27 @@ namespace PPNewsletterFilter
                 var existingEntry = Data.map.FirstOrDefault(x => x.Item1 == fromAddress);
                 if (existingEntry != null)
                 {
+                    List<UniqueId> uniqueIds = existingEntry.Item5;
                     // Update the existing entry with newsletter information
-                    var updatedEntry = new Tuple<string, int, bool, string>(
+                    var updatedEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
                         fromAddress,
                         existingEntry.Item2,
                         true,  // Set to true since we found a "List-Unsubscribe" header
-                        unsubscribeLink ?? existingEntry.Item4  // Update with the unsubscribe header if available
+                        unsubscribeLink ?? existingEntry.Item4,  // Update with the unsubscribe header if available
+                        existingEntry.Item5
                     );
                     Data.map[Data.map.IndexOf(existingEntry)] = updatedEntry;
                 }
                 else if (unsubscribeLink != null)
                 {
+                    List<UniqueId> uniqueIds = new List<UniqueId>();
                     // Create a new entry if it wasn't found and has a newsletter header
-                    var newEntry = new Tuple<string, int, bool, string>(
+                    var newEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
                         fromAddress,
                         1,
                         true,
-                        unsubscribeLink
+                        unsubscribeLink,
+                        uniqueIds
                     );
                     Data.map.Add(newEntry);
                 }
