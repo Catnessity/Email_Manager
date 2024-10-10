@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', event =>{
+   
     gameLoop();  // Start the loop
 });
 
@@ -7,11 +8,13 @@ async function gameLoop() {
     setTimeout(() => {
         resetGame();  // After 5 seconds, reset the game
         gameLoop();   // Then restart the loop
+        setTimeout(() => {}, 500);
     }, 5000);
 }
 
 function resetGame(){
     document.getElementById("DownloadGame").innerHTML="";
+    document.getElementById("DownloadGame").style.display= "none";
 }
 
 async function setupGame(){
@@ -29,7 +32,10 @@ async function setupGame(){
         row_content += '</div>';
         gameboard.innerHTML += row_content;
     }
-    setDownloadButton();
+    await setDownloadButton();
+   
+    setTimeout(() => {}, 500);
+    document.getElementById("DownloadGame").style.display="block";
 
 }
 async function pathExists(path){
@@ -39,16 +45,16 @@ async function pathExists(path){
             { method: "HEAD" }
         );
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return false;
     }   
     //console.log(res);
     if (res.ok){
-        console.log(path + "true");
+        // console.log(path + "true");
         return true;
     }
     else{
-        console.log(path + "false");
+        // console.log(path + "false");
         return false;
     }
 }
@@ -59,17 +65,17 @@ async function insertColContent(row_content){
     
     //  pathExists('images/ads/ad' + ad + '.jpg').then((exists) => {
     let result = await pathExists('images/ads/ad' + ad + '.jpg');
-    console.log("res: "+ result);
+    // console.log("res: "+ result);
     if (result){
-        console.log("exists");
+        // console.log("exists");
         //add image
-        //TODO size images
-        row_content += '<div class="col gamefield"> <img src="images/ads/ad' + ad + '.jpg">  </div>';
+      
+        row_content += '<div class="col gamefield"> <img src="images/ads/ad' + ad + '.jpg" style="max-width: 30vw;">  </div>';
         //row_content += '<div class="col gamefield" style="images/ads/ad' + ad + '.jpg">  </div>';
         //row_content += '<div class="col gamefield" style="background-image: url("images/ads/ad' + ad + '.jpg"); background-size: cover; height: 400px; width: 100%;"></div>'
     }
     else{
-        console.log("does not exist");
+        // console.log("does not exist");
         let color = "#";
         for(k=0; k < 6; k++){
             let value = Math.round(Math.random() * 16);
@@ -85,11 +91,11 @@ async function insertColContent(row_content){
     return row_content;
 }
 
-function setDownloadButton(){
+async function setDownloadButton(){
     let fields = document.getElementById("DownloadGame").getElementsByClassName('gamefield');
-    console.log(fields.length);
+    // console.log(fields.length);
     let button_field = Math.round(Math.random() * fields.length);
-    console.log("button: " + button_field);
+    // console.log("button: " + button_field);
     fields[button_field].innerHTML += "<span> <button class='download-btn-light'> DOWNLOAD C-MAIL </button>";
     fields[button_field].innerHTML += "<button class='download-btn-dark'> DOWNLOAD C-MAIL </button> </span>";
 }
