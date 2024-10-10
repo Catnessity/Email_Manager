@@ -121,7 +121,9 @@ internal class Program
                 }
                 else if (listUnsubscribeHeader != null)
                 {
+                    Console.WriteLine(fromAddress);
                     Console.WriteLine(listUnsubscribeHeader);
+                    Console.WriteLine("\n\n\n\n");
                     FoundFromList.Add(fromAddress);
                 }
 

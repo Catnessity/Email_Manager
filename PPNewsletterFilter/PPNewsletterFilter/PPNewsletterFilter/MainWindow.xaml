@@ -11,7 +11,7 @@
         WindowStyle="None"
         MouseDown="Window_MouseDown">
 
-   
+
     <!--Gradient Background-->
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -185,7 +185,7 @@
                           BorderBrush="#2D4E3E"
                           BorderThickness="2"
                           VerticalContentAlignment="Center"/>
-                
+
                 <!--Button Filter-->
                 <Button Content="Filter"                        
                         Margin="20,0,0,0" 
@@ -216,7 +216,7 @@
                       VerticalGridLinesBrush="Transparent"
                       IsReadOnly="True" 
                       SelectionChanged="DataGrid_SelectionChanged"
-                      ItemsSource="{Binding Emails}"> 
+                      ItemsSource="{Binding Emails}">
 
                 <DataGrid.Columns>
                     <!--Sender Column-->
@@ -277,7 +277,9 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Background="#345B49" Foreground="White" Padding="5">
+                                    <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Background="#345B49" Foreground="White" Padding="5"
+                                            Visibility="{Binding UnsubscribeButtonVisibility}"
+                                            CommandParameter="{Binding UnsubscribeLink}">
                                         <!--Open PopUp-->
                                         <Button.Triggers>
                                             <EventTrigger RoutedEvent="Button.Click">
@@ -286,7 +288,7 @@
                                                         <Storyboard>
                                                             <BooleanAnimationUsingKeyFrames 
                                                                  Storyboard.TargetName="PopUp_UnsubscribeWarning" 
-                                                                 Storyboard.TargetProperty="IsOpen"> 
+                                                                 Storyboard.TargetProperty="IsOpen">
                                                                 <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True" />
                                                             </BooleanAnimationUsingKeyFrames>
                                                         </Storyboard>
@@ -298,7 +300,7 @@
                                     <!--Info PopUp-->
                                     <Popup x:Name="PopUp_UnsubscribeWarning"
                                            Placement="Center"
-                                           StaysOpen="False">           
+                                           StaysOpen="False">
                                         <Grid Background="#80000000">
                                             <!-- Background from PopUp -->
                                             <Border BorderBrush="#2D4E3E" Background="#2D4E3E" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
@@ -308,7 +310,8 @@
 
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <!-- Start Button -->
-                                                        <Button Content="Continue" Width="100px" Padding="10" Background="#61A888" Foreground="White" Click="btnUnsubscribe_Click" Margin="10, 0"/>
+                                                        <Button Content="Continue" Width="100px" Padding="10" Background="#61A888" Foreground="White" Click="btnUnsubscribe_Click" Margin="10, 0"
+                                                                CommandParameter="{Binding UnsubscribeLink}"/>
                                                         <!-- Close Button -->
                                                         <Button Content="Cancel" Width="100px" Padding="10" Background="#bf112e" Foreground="White">
                                                             <Button.Triggers>
@@ -317,7 +320,7 @@
                                                                         <Storyboard>
                                                                             <BooleanAnimationUsingKeyFrames 
                                                                                  Storyboard.TargetName="PopUp_UnsubscribeWarning" 
-                                                                                 Storyboard.TargetProperty="IsOpen"> 
+                                                                                 Storyboard.TargetProperty="IsOpen">
                                                                                 <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False" />
                                                                             </BooleanAnimationUsingKeyFrames>
                                                                         </Storyboard>
@@ -385,7 +388,8 @@
 
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <!-- Start Button -->
-                                                        <Button Content="Continue" Width="100px" Padding="10" Background="#61A888" Foreground="White" Click="btnDelete_Click" Margin="10, 0"/>
+                                                        <Button Content="Continue" Width="100px" Padding="10" Background="#61A888" Foreground="White" Click="btnDelete_Click" Margin="10, 0"
+                                                            CommandParameter="{Binding Sender}"/>
                                                         <!-- Close Button -->
                                                         <Button Content="Cancel" Width="100px" Padding="10" Background="#bf112e" Foreground="White">
                                                             <Button.Triggers>
