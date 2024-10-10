@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MimeKit;
 using MailKit;
 using MailKit.Search;
@@ -7,12 +7,13 @@ using Org.BouncyCastle.Bcpg;
 using Org.BouncyCastle.Asn1.X509;
 using System.Security.Cryptography;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 internal class Program
 {
-    
+
     private static void Main(string[] args)
     {
-        
+
         using (var client = new ImapClient())
         {
             //Console.WriteLine("Use private password?");
@@ -34,7 +35,7 @@ internal class Program
             //}
             //else
             //{
-                var password = "C-mailT0123!";
+            var password = "C-mailT0123!";
             //}
             Console.WriteLine("Please choose the email domain you want to use:");
             Console.WriteLine("1) GMX");
@@ -71,32 +72,44 @@ internal class Program
             client.Connect(imap_address, 993, true);
             client.Authenticate(email, password);
 
-
-
-
-
-
-            // The Inbox folder is always available on all IMAP servers...
             var inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadWrite);
 
-            Console.WriteLine("Total messages: {0}", inbox.Count);
-            for (int i = 0; i < inbox.Count; i++)
+            var summaries = inbox.Fetch(0, -1, MessageSummaryItems.UniqueId);
+            int messageCount = inbox.Count;
+
+            for (int i = 0; i < messageCount; i++)
             {
-                var message = inbox.GetMessage(i);
-                if (message.From.ToString().Contains("fredi.f5000@gmail.com"))
-                {
-                    inbox.Store(i, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
-                    inbox.Expunge();
-                    Console.WriteLine("it worked... or did it?");
-                }
-                Console.WriteLine(message.Subject);
+                Console.WriteLine(summaries[i].UniqueId);
             }
 
 
 
-            client.Disconnect(true);
+
         }
 
+
+    }
+    public static List<string> ExtractLinksFromMailBody(string text)
+    {
+        // Regex pattern to match HTTP/HTTPS URLs
+        string pattern = @"(http[s]?://[^\s]+)";
+
+        // Create a regex object
+        Regex regex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        // Find all matches in the input text
+        MatchCollection matches = regex.Matches(text);
+
+        // Initialize a list to store the links
+        List<string> links = new List<string>();
+
+        // Add each match (link) to the list
+        foreach (Match match in matches)
+        {
+            links.Add(match.Value);
+        }
+
+        return links;
     }
 }

@@ -11,12 +11,12 @@
         WindowStyle="None"
         MouseDown="Window_MouseDown">
 
-   
+
     <!--Gradient Background-->
     <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#2D4E3E" Offset="0" />
-            <GradientStop Color="#44705b" Offset="1" />
+        <LinearGradientBrush StartPoint="0.8,0.3" EndPoint="0.9,1">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="DarkGray" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
 
@@ -44,7 +44,7 @@
 
             <!--Title-->
             <TextBlock Text="Filter Your Mails"
-                        Foreground="#61A888"
+                        Foreground="#ff8900"
                         FontWeight="Black"
                         FontFamily="Montserrat"
                         FontSize="14"
@@ -116,7 +116,7 @@
             <Button  Name="btnClose"
                    Background="#bf112e"
                    BorderThickness="0"
-                   Content="x"
+                   Content="X"
                    Foreground="White"
                    FontSize="12"
                    Cursor="Hand"
@@ -168,11 +168,11 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
-                <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Foreground="White" VerticalAlignment="Center"/>
-                <CheckBox Name="filterUnsubscribe" Content="Unsubscribe" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="White" VerticalAlignment="Center"/>
-                <CheckBox Name="filterAbbestellen" Content="Abbestellen" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="3" Foreground="White" VerticalAlignment="Center"/>
-                <TextBlock Text="Enter Filter Word:" Grid.Row="4" Foreground="WhiteSmoke" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <CheckBox Name="filterUnsubscribe" Content="Unsubscribe" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <CheckBox Name="filterAbbestellen" Content="Abbestellen" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="3" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <TextBlock Text="Enter Filter Word:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
                 <TextBox  Name="filterKeyWord"
                           FontSize="13" 
                           Grid.Row="4"
@@ -181,18 +181,18 @@
                           Height="20"
                           Margin="20,10,20,0"
                           CaretBrush="Black"
-                          Background="white"
-                          BorderBrush="#2D4E3E"
+                          Background="#ffb258"
+                          BorderBrush="#1a1a1a"
                           BorderThickness="2"
                           VerticalContentAlignment="Center"/>
-                
+
                 <!--Button Filter-->
                 <Button Content="Filter"                        
                         Margin="20,0,0,0" 
                         Grid.Row="5" 
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
-                        Background="#61A888" 
+                        Background="#ff8900" 
                         Foreground="White"
                         Width="100px" 
                         Cursor="Hand" 
@@ -202,21 +202,22 @@
             </Grid>
 
             <!--DataGrid Display Second Column-->
-            <DataGrid Grid.Row="1"
+            <DataGrid x:Name="EmailDataGrid"
+                      Grid.Row="1"
                       Grid.Column="2"
-                      Background="White"
-                      BorderBrush="White"
+                      Background="Transparent"
+                      BorderBrush="Transparent"
                       Margin="0,0,0,0"                    
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="False"
                       CanUserResizeColumns="True"
-                      AlternatingRowBackground="#F1F1F1"
+                      AlternatingRowBackground="#ffeed9"
                       GridLinesVisibility="None"
                       HorizontalGridLinesBrush="Transparent"
                       VerticalGridLinesBrush="Transparent"
                       IsReadOnly="True" 
                       SelectionChanged="DataGrid_SelectionChanged"
-                      ItemsSource="{Binding Emails}"> 
+                      ItemsSource="{Binding Emails}">
 
                 <DataGrid.Columns>
                     <!--Sender Column-->
@@ -226,7 +227,7 @@
                                 <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#61A888"/>
+                                <Setter Property="Background" Value="#ffb258"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="FontSize" Value="14"/>
@@ -236,13 +237,13 @@
                     </DataGridTextColumn>
 
                     <!--Count Column-->
-                    <DataGridTextColumn Header="Count" Width="100" Binding="{Binding Count}">
+                    <DataGridTextColumn Header="Count" Width="60" Binding="{Binding Count}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#61A888"/>
+                                <Setter Property="Background" Value="#ffb258"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="FontSize" Value="14"/>
@@ -260,24 +261,24 @@
 
 
                     <!--Unsubscribe Column-->
-                    <DataGridTemplateColumn Header="Unsubscribe" Width="*">
+                    <DataGridTemplateColumn Header="" Width="95">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#61A888"/>
+                                <Setter Property="Background" Value="#ffb258"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderThickness" Value="1,1,0,1"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Background="#345B49" Foreground="White" Padding="5" >
+                                    <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Width="80" Background="#ff8900" Foreground="White" Padding="5" >
                                         <!--Open PopUp-->
                                         <Button.Triggers>
                                             <EventTrigger RoutedEvent="Button.Click">
@@ -285,8 +286,10 @@
                                                     <BeginStoryboard>
                                                         <Storyboard>
                                                             <BooleanAnimationUsingKeyFrames 
-                                         Storyboard.TargetName="PopUp_UnsubscribeWarning" 
-                                         Storyboard.TargetProperty="IsOpen">
+                                                                 Storyboard.TargetName="PopUp_UnsubscribeWarning" 
+                                                                 Storyboard.TargetProperty="IsOpen">
+                                                                 Storyboard.TargetName="PopUp_UnsubscribeWarning" 
+                                                                 Storyboard.TargetProperty="IsOpen">
                                                                 <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True" />
                                                             </BooleanAnimationUsingKeyFrames>
                                                         </Storyboard>
@@ -297,19 +300,19 @@
                                     </Button>
                                     <!--Info PopUp-->
                                     <Popup x:Name="PopUp_UnsubscribeWarning"
-                    PlacementTarget="{Binding ElementName=OpenPopup_Unsubscribe}"
-                    StaysOpen="False">
+                                            PlacementTarget="{Binding ElementName=OpenPopup_Unsubscribe}"
+                                            StaysOpen="False">
 
-                                        <Border BorderBrush="#2D4E3E" Background="#44705b">
+                                        <Border BorderBrush="#ffb258" Background="#ffb258">
                                             <StackPanel>
                                                 <!-- Binding the sender's name dynamically -->
                                                 <TextBlock Foreground="White" Text="{Binding Sender, StringFormat='Wirklich unsubscribe von: {0}'}" Margin="0, 0, 0, 10"/>
 
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <!-- Start Button -->
-                                                    <Button Content="Start" Padding="5" Background="#345B49" Foreground="White" Click="btnUnsubscribe_Click" Margin="5, 0"/>
+                                                    <Button Content="Start" Padding="5" Background="#bf112e" Foreground="White" Click="btnUnsubscribe_Click" Margin="5, 0"/>
                                                     <!-- Close Button -->
-                                                    <Button Content="Close" Padding="5" Background="#bf112e" Foreground="White">
+                                                    <Button Content="Close" Padding="5" Background="#ff8900" Foreground="White">
                                                         <Button.Triggers>
                                                             <EventTrigger RoutedEvent="Button.Click">
                                                                 <BeginStoryboard>
@@ -336,23 +339,25 @@
 
 
                     <!--Delete Column-->
-                    <DataGridTemplateColumn Header="Delete" Width="*">
+                    <DataGridTemplateColumn Header="" Width="35">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Background" Value="#61A888"/>
+                                <Setter Property="Background" Value="#ffb258"/>
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderThickness" Value="0,1,1,1"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Background="#bf112e" Foreground="White" Padding="5" Click="btnDelete_Click"/>
+                                <Button Background="#bf112e" Foreground="White" Width="27" Height="27" Padding="5" Click="btnDelete_Click">
+                                    <Image Source="images/trashcan.png" Width="23" Height="23" />
+                                </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -362,7 +367,7 @@
                     <Style TargetType="{x:Type DataGridCell}">
                         <Style.Triggers>
                             <Trigger Property="DataGridCell.IsSelected" Value="True">
-                                <Setter Property="Background" Value="#61A888"/>
+                                <Setter Property="Background" Value="#ffb258"/>
                                 <Setter Property="BorderBrush" Value="White"/>
                             </Trigger>
                         </Style.Triggers>

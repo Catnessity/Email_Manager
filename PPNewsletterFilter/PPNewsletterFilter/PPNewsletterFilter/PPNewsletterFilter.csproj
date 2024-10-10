@@ -15,7 +15,9 @@
   <ItemGroup>
     <None Remove="images\eye_closed.png" />
     <None Remove="images\eye_open.png" />
+    <None Remove="images\logo+text.png" />
     <None Remove="images\logo.png" />
+    <None Remove="images\trashcan.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,9 +31,11 @@
     <Resource Include="images\eye_open.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\logo+text.png" />
     <Resource Include="images\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\trashcan.png" />
   </ItemGroup>
 
   <ItemGroup>

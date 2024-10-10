@@ -14,7 +14,7 @@
                                  Background="{TemplateBinding Background}" 
                                  BorderBrush="{TemplateBinding BorderBrush}" 
                                  BorderThickness="{TemplateBinding BorderThickness}"  
-                     CornerRadius="5">
+                                 CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center" 
                                    VerticalAlignment="Center"/>
                         </Border>
@@ -41,10 +41,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#3B6F4A"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#ff8900"/>
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#3B6F4A"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#ff8900"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -65,10 +65,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#3B6F4A"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#ff8900"/>
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#3B6F4A"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#ff8900"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

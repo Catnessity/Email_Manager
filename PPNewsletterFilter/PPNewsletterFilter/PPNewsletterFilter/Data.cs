@@ -11,6 +11,6 @@ namespace PPNewsletterFilter
     public static class Data
     {
          public static ImapClient? Client { get; set; }
-         public static Dictionary<string, int>? map;
+         public static List<Tuple<string, int, bool, string, List<UniqueId>>>? map;
     }
 }

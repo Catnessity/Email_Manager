@@ -35,6 +35,7 @@ namespace PPNewsletterFilter
             string password = string.Empty;
             mail = txtEmail.Text;
             password = pwdPassword.Password;
+            string vispassword = pwdPasswordShow.Text;
 
             //if email empty return with color
             if (mail == "")
@@ -47,11 +48,12 @@ namespace PPNewsletterFilter
             }
 
             //if password empty return with color
-            if (password == "")
+            if (password == "" && vispassword == "")
             {
                 Password.Foreground = new SolidColorBrush(Colors.Red);
                 return;
             }
+
             else
             {
                 Password.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
@@ -85,8 +87,11 @@ namespace PPNewsletterFilter
                 try
                 {
                     Data.Client.Connect(imap_address, 993, true);
+                    if(password != "")
                     Data.Client.Authenticate(mail, password);
-                }
+                    else if(vispassword != "")
+                    Data.Client.Authenticate(mail, vispassword);
+            }
                 catch (Exception ex)
                 {
                     feedback.Text = "The connection to the server or the authentication failed. \n Check your password and try again.";
@@ -137,8 +142,10 @@ namespace PPNewsletterFilter
             Application.Current.Shutdown();
         }
 
+
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
+           
         }
 
         private void btnFullScreen_Click(object sender, RoutedEventArgs e)

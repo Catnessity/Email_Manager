@@ -13,40 +13,40 @@
 
     <!--Gradient Background-->
     <Window.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#2D4E3E" Offset="0" />
-            <GradientStop Color="#44705b" Offset="1" />
+        <LinearGradientBrush StartPoint="0.8,0.3" EndPoint="0.9,1">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="DarkGray" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
-    
-<!--Page divided into two Rows-->
-    <Grid>
-        
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <!--Grid for Title Bar: First Row-->
+    <!--Page divided into two Rows-->
+    <Grid>
+
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="5"/>
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-          
-            <!--Title-->
-            <TextBlock Text="Mail Login"
+            <!--Grid for Title Bar: First Row-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!--Title-->
+                <TextBlock Text="Mail Login"
                        Grid.Column="0"
-                       Foreground="#61A888"
+                       Foreground="#ff8900"
                        FontWeight="Black"
                        FontFamily="Montserrat"
                        FontSize="14"                      
@@ -54,8 +54,8 @@
                        HorizontalAlignment="center"/>
 
 
-            <!--Button Minimalize-->
-            <Button  Name="btnMinimize"
+                <!--Button Minimalize-->
+                <Button  Name="btnMinimize"
                    Background="Black"
                    BorderThickness="0"
                    Content="-"
@@ -69,22 +69,22 @@
                    Width="20"
                    Click="btnMinimize_Click">
 
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
                       CornerRadius="10" 
                       BorderBrush="{TemplateBinding BorderBrush}" 
                       BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" 
+                                <ContentPresenter HorizontalAlignment="Center" 
                                     VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            
-            <!-- Button FullScreen -->
-            <Button  Name="btnFullScreen"
-                   Background="Orange"
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Button FullScreen -->
+                <Button  Name="btnFullScreen"
+                   Background="#ff8900"
                    BorderThickness="0"
                    Content="⛶"
                    Foreground="White"
@@ -97,24 +97,24 @@
                    Width="20"
                    Click="btnFullScreen_Click">
 
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
                       CornerRadius="10" 
                       BorderBrush="{TemplateBinding BorderBrush}" 
                       BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" 
+                                <ContentPresenter HorizontalAlignment="Center" 
                                     VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
 
-            </Button>
-            <!--Button Close-->
-            <Button  Name="btnClose"
+                </Button>
+                <!--Button Close-->
+                <Button  Name="btnClose"
                    Background="#bf112e"
                    BorderThickness="0"
-                   Content="x"
+                   Content="X"
                    Foreground="White"
                    FontSize="12"
                    Cursor="Hand"
@@ -125,54 +125,52 @@
                    Width="20"
                    Click="btnClose_Click">
 
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
                       CornerRadius="10" 
                       BorderBrush="{TemplateBinding BorderBrush}" 
                       BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" 
+                                <ContentPresenter HorizontalAlignment="Center" 
                       VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
 
-        <!--Grid for Login Form: Second Row-->
-        <StackPanel Width="350"
+            <!--Grid for Login Form: Second Row-->
+            <StackPanel Width="350"
                     Grid.Row="1"            
                     Orientation="Vertical"
-                    Margin="0,30,0,0">
+                    Margin="225,5,225,0">
 
-            <!--Logo Image-->
-            <Image Source="images/logo.png"
-                    Width="110"
+                <!--Logo Image-->
+                <Image Source="images/logo+text.png"
+                    Width="200"
                     Height="110"/>
-
-            <!--Button Display Info Text in Popup-->
-            <Button Name="OpenPopup" 
+                <Button x:Name="OpenPopup" 
                     Content="?"
-                    Background="#254234"
-                    Foreground="White"
+                    Background="#ff8900"
+                    Foreground="white"
                     Width="30"
                     Height="30"
+                    Margin="0,15,0,0"
                     Cursor="Hand"
                     Click="btnInfo_Click">
-                
-                <!--ToolTip-->
-                <Button.ToolTip>
-                    <ToolTip Background="#44705b">
-                        <Border BorderBrush="#2D4E3E">
-                            <Label Foreground="White">To use this feature, make sure IMAP is enabled for your mail account.</Label>
-                        </Border>
-                    </ToolTip>
-                </Button.ToolTip>
-                
-                <!--Open PopUp-->
-                <Button.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
-                        <EventTrigger.Actions>
+
+                    <!--ToolTip-->
+                    <Button.ToolTip>
+                        <ToolTip Background="#ff8900">
+                            <Border BorderBrush="#1a1a1a">
+                                <Label Foreground="White" Content="To use this feature, make sure IMAP is enabled for your mail account."/>
+                            </Border>
+                        </ToolTip>
+                    </Button.ToolTip>
+
+                    <!--Open PopUp-->
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="ButtonBase.Click">
                             <BeginStoryboard>
                                 <Storyboard>
                                     <BooleanAnimationUsingKeyFrames 
@@ -182,46 +180,47 @@
                                     </BooleanAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
-                        </EventTrigger.Actions>
-                    </EventTrigger>
-                </Button.Triggers>
+                        </EventTrigger>
+                    </Button.Triggers>
 
-                <!--Style from btnInfo-->
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="btnBackground" Background="{TemplateBinding Background}" 
+                    <!--Style from btnInfo-->
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="btnBackground" Background="{TemplateBinding Background}" 
                                 CornerRadius="30">
-                            <ContentPresenter HorizontalAlignment="Center" 
+                                <ContentPresenter HorizontalAlignment="Center" 
                                               VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="btnBackground" Property="Background" Value="#1a3327"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            
-            <!--Info PopUp-->
-            <Popup x:Name="ContextPopup"
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="btnBackground" Property="Background" Value="#bf6600"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!--Button Display Info Text in Popup-->
+
+                <!--Info PopUp-->
+                <Popup x:Name="ContextPopup"
                    PlacementTarget="{Binding ElementName=OpenPopup}"
                    StaysOpen="False">
 
-                <Border BorderBrush="#2D4E3E" Background="#44705b">
-                    <Label Foreground="White">To use this feature, make sure IMAP is enabled for your mail account.</Label>
-                </Border>
-            </Popup>
+                    <Border BorderBrush="#1a1a1a" Background="#ffb258">
+                        <Label Foreground="White">To use this feature, make sure IMAP is enabled for your mail account.</Label>
+                    </Border>
+                </Popup>
 
 
-            <!--Mail Block-->
-            <TextBlock  Name="Mail"
+                <!--Mail Block-->
+                <TextBlock  Name="Mail"
                     Text="Mail"
-                    Foreground="WhiteSmoke"
+                    Foreground="#1a1a1a"
                     FontSize="14"
                     FontWeight="Medium"
                     FontFamily="Montserrat"
-                    Margin="0,20,0,0"/>
+                    Margin="0,10,0,0"/>
 
                 <TextBox x:Name="txtEmail"
                     FontSize="13"
@@ -229,50 +228,50 @@
                     FontFamily="Montserrat"
                     Height="30"
                     CaretBrush="Black"
-                    Background="#61A888"
-                    BorderBrush="#2D4E3E"
+                    Background="#ffb258"
+                    BorderBrush="#1a1a1a"
                     BorderThickness="2"
                     VerticalContentAlignment="Center"
                     TextChanged="txtEmail_TextChanged">
-            </TextBox>
+                </TextBox>
 
-            <TextBlock  Name ="Password"
+                <TextBlock  Name ="Password"
                     Text="Password"
-                    Foreground="WhiteSmoke"
+                    Foreground="#1a1a1a"
                     FontSize="14"
                     FontWeight="Medium"
                     FontFamily="Montserrat"
                     Margin="0,10,0,0"/>
-            <Grid>
-                <PasswordBox x:Name="pwdPassword"
+                <Grid>
+                    <PasswordBox x:Name="pwdPassword"
                     FontSize="13"
                     FontWeight="Normal"
                     FontFamily="Montserrat"                    
                     Height="30"
                     CaretBrush="Black"
-                    Background="#61A888"
-                    BorderBrush="#2D4E3E"
+                    Background="#ffb258"
+                    BorderBrush="#1a1a1a"
                     BorderThickness="2"
                     VerticalContentAlignment="Center"
                     KeyDown="PasswordField_Enter">
-            </PasswordBox>
+                    </PasswordBox>
 
-                <TextBox x:Name="pwdPasswordShow"
+                    <TextBox x:Name="pwdPasswordShow"
                         FontSize="13"
                         FontWeight="Normal"
                         FontFamily="Montserrat"
                         Height="30"
                         CaretBrush="Black"
-                        Background="#61A888"
-                        BorderBrush="#2D4E3E"
+                        Background="#ffb258"
+                        BorderBrush="#1a1a1a"
                         BorderThickness="2"
                         VerticalContentAlignment="Center"
                         KeyDown="PasswordField_Enter"
-                        Visibility="Hidden"> 
-                </TextBox>
-            
+                        Visibility="Hidden">
+                    </TextBox>
 
-   
+
+
 
                     <Image x:Name="imgTogglePassword"
                            Source="images/eye_closed.png"
@@ -296,7 +295,9 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="CheckBox">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                            --><!-- Toggle Button --><!--
+                                            -->
+                    <!-- Toggle Button -->
+                    <!--
                                             <Border x:Name="ToggleBackground" 
                                                     Width="40" 
                                                     Height="20" 
@@ -312,11 +313,15 @@
                                                             Margin="1,0,0,0"/> 
                                             </Border>
 
-                                            --><!-- Label/Text --><!--
+                                            -->
+                    <!-- Label/Text -->
+                    <!--
                                             <ContentPresenter VerticalAlignment="Center" />
                                         </StackPanel>
 
-                                        --><!-- Checked Animation --><!--
+                                        -->
+                    <!-- Checked Animation -->
+                    <!--
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsChecked" Value="True">
                                                     <Setter TargetName="ToggleBackground" Property="Background" Value="#254234" />
@@ -329,8 +334,8 @@
                         </Style>
                     </CheckBox.Style> 
                 </CheckBox>-->
-            </Grid>
-                
+                </Grid>
+
 
                 <TextBlock  Name="feedback"
                             Text=""
@@ -338,11 +343,11 @@
                             FontSize="8"
                             FontWeight="Medium"
                             FontFamily="Montserrat"
-                            Margin="10,5,5,20"/> 
+                            Margin="10,5,5,20"/>
 
-            <!--login Button-->
-            <Button x:Name="btnLogin"
-                    Background="#254234"
+                <!--login Button-->
+                <Button x:Name="btnLogin"
+                    Background="#ff8900"
                     BorderThickness="0"
                     Content="Login"
                     Foreground="White"
@@ -356,24 +361,24 @@
                     Height="25"
                     Click="btnLogin_Click">
 
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="btnBackground" Background="{TemplateBinding Background}" 
-                    CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                  VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="btnBackground" Property="Background" Value="#1a3327"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </StackPanel>
-               
-    </Grid>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="btnBackground" Background="{TemplateBinding Background}" 
+                                    CornerRadius="8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="btnBackground" Property="Background" Value="#bf6600"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+        </Grid>
 
     </Grid>
 </Window>
