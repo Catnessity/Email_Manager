@@ -208,7 +208,7 @@
                    PlacementTarget="{Binding ElementName=OpenPopup}"
                    StaysOpen="False">
 
-                <Border BorderBrush="#2D4E3E" Background="#44705b">
+                    <Border BorderBrush="#44705b" Background="#44705b">
                     <Label Foreground="White">To use this feature, make sure IMAP is enabled for your mail account.</Label>
                 </Border>
             </Popup>
