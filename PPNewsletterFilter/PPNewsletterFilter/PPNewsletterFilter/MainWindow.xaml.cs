@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.Json;
 
 namespace PPNewsletterFilter
 {
@@ -27,8 +28,25 @@ namespace PPNewsletterFilter
         {
             InitializeComponent();
             Emails = new ObservableCollection<EmailInfo>();
-            DataContext = this;
+            this.DataContext = this;
+            Data.InitializeUnsubscribedSenders();
+            List<string> senderHaveIgnoredUnsubscribe = new List<string>();
 
+            foreach (var mailinfo in Emails)
+            {
+                if (mailinfo.Sender != null)
+                {
+                    //if (SenderIgnoredUnsubscribe(mailinfo.Sender, mailinfo.))
+                    //{
+                    //    senderHaveIgnoredUnsubscribe.Add(mailinfo.Sender);
+                    //}
+                }
+
+            }
+            if (senderHaveIgnoredUnsubscribe.Count > 0)
+            {
+                //open notification window
+            }
         }
 
         public void UpdateEmailList(List<Tuple<string, int, bool, string, List<UniqueId>>> emailMap)
@@ -89,31 +107,45 @@ namespace PPNewsletterFilter
         }
         private void btnUnsubscribe_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button && button.CommandParameter is string unsubscribeLink)
+
+
+            if (sender is Button button)
             {
-                if (!string.IsNullOrEmpty(unsubscribeLink))
+                if (button.CommandParameter is EmailInfo info)
                 {
+
+
+                    if (info == null || info.UnsubscribeLink == null || info.Sender == null)
+                    {
+                        return;
+                    }
                     try
                     {
                         // Open the link in the default browser
                         System.Diagnostics.Process.Start(new ProcessStartInfo
                         {
-                            FileName = unsubscribeLink,
+                            FileName = info.UnsubscribeLink,
                             UseShellExecute = true // UseShellExecute ensures the link opens in the default browser
                         });
+
+                        Data.AddDataToUnsubscribedSenders(info.Sender, info.UnsubscribeLink);
+
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Failed to open unsubscribe link: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+
                 }
-                else
-                {
-                    MessageBox.Show("Unsubscribe link is not available.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Unsubscribe link is not available.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
         }
+
+
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -125,7 +157,7 @@ namespace PPNewsletterFilter
                 var inbox = Data.Client.Inbox;
 
                 inbox.Store(uids, new StoreFlagsRequest(StoreAction.Add, MessageFlags.Deleted) { Silent = true });
-                
+
                 inbox.Expunge();
 
             }
@@ -154,7 +186,7 @@ namespace PPNewsletterFilter
         public int Count { get; set; }
         public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Visible;
         public string? UnsubscribeLink { get; set; }
-        public List<UniqueId> UniqueIDs { get; set; }
+        public List<UniqueId>? UniqueIDs { get; set; }
 
     }
 
