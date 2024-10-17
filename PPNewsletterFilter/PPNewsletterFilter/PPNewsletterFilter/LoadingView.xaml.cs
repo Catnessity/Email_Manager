@@ -55,7 +55,7 @@ namespace PPNewsletterFilter
         async Task StartLoading()
         {
             var inbox = Data.Client.Inbox;
-            Data.map = new List<Tuple<string, int, bool, string, List<UniqueId>>>();
+            Data.map = new List<Tuple<string, int, bool, string, List<UniqueId>, string>>();
             inbox.Open(FolderAccess.ReadWrite);
             int messageCount = inbox.Count;
 
@@ -70,6 +70,7 @@ namespace PPNewsletterFilter
                 var sender = message.From.ToString();
                 var listUnsubscribeHeader = message.Headers["List-Unsubscribe"];
                 string unsubscribeLink = "";
+                var emaildate = message.Date.ToString("yyyy-MM-dd");
                 if (listUnsubscribeHeader != null)
                     unsubscribeLink = ExtractUnsubscribeLink(listUnsubscribeHeader);
 
@@ -80,12 +81,13 @@ namespace PPNewsletterFilter
                     List<UniqueId> existingUids = existingEntry.Item5;
                     existingUids.Add(uid);
                     // Update the existing entry
-                    var updatedEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
+                    var updatedEntry = new Tuple<string, int, bool, string, List<UniqueId>, string>(
                         sender,
                         existingEntry.Item2 + 1,  // Increment the count
                         existingEntry.Item3 || listUnsubscribeHeader != null,  // Update if newsletter exists
                         unsubscribeLink ?? existingEntry.Item4,  // Update the unsubscribe header if available
-                        existingUids
+                        existingUids,
+                        emaildate
                     );
 
                     // Replace the old entry with the updated one
@@ -96,12 +98,13 @@ namespace PPNewsletterFilter
                     List<UniqueId> list = new List<UniqueId>();
                     list.Add(uid);
                     // Create a new entry if the sender is not in the map yet
-                    var newEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
+                    var newEntry = new Tuple<string, int, bool, string, List<UniqueId>, string>(
                         sender,
                         1,  // Start with a count of 1
                         listUnsubscribeHeader != null,  // Newsletter status
                         unsubscribeLink, // Store the unsubscribe header if available
-                        list
+                        list,
+                        emaildate
                     );
                     Data.map.Add(newEntry);
                 }
@@ -125,19 +128,20 @@ namespace PPNewsletterFilter
                 string unsubscribeLink = "";
                 if (listUnsubscribeHeader != null)
                 unsubscribeLink = ExtractUnsubscribeLink(listUnsubscribeHeader);
-
+                var emaildate = item.Date.ToString("yyyy-MM-dd");
                 // Find if the sender already exists in the map
                 var existingEntry = Data.map.FirstOrDefault(x => x.Item1 == fromAddress);
                 if (existingEntry != null)
                 {
                     List<UniqueId> uniqueIds = existingEntry.Item5;
                     // Update the existing entry with newsletter information
-                    var updatedEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
+                    var updatedEntry = new Tuple<string, int, bool, string, List<UniqueId>, string>(
                         fromAddress,
                         existingEntry.Item2,
                         true,  // Set to true since we found a "List-Unsubscribe" header
                         unsubscribeLink ?? existingEntry.Item4,  // Update with the unsubscribe header if available
-                        existingEntry.Item5
+                        existingEntry.Item5,
+                        emaildate
                     );
                     Data.map[Data.map.IndexOf(existingEntry)] = updatedEntry;
                 }
@@ -145,12 +149,13 @@ namespace PPNewsletterFilter
                 {
                     List<UniqueId> uniqueIds = new List<UniqueId>();
                     // Create a new entry if it wasn't found and has a newsletter header
-                    var newEntry = new Tuple<string, int, bool, string, List<UniqueId>>(
+                    var newEntry = new Tuple<string, int, bool, string, List<UniqueId>, string>(
                         fromAddress,
                         1,
                         true,
                         unsubscribeLink,
-                        uniqueIds
+                        uniqueIds,
+                        emaildate
                     );
                     Data.map.Add(newEntry);
                 }

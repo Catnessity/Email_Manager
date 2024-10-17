@@ -169,9 +169,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <CheckBox Name="filterUnsubscribe" Content="Unsubscribe" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <CheckBox Name="filterAbbestellen" Content="Abbestellen" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="3" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
                 <TextBlock Text="Enter Filter Word:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
                 <TextBox  Name="filterKeyWord"
                           FontSize="13" 
@@ -257,7 +255,28 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-
+                    
+                    <!--Last Mail Date Column-->
+                    <DataGridTextColumn Header="Date of last Mail" Width="120" Binding="{Binding DateLastSent}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="#ffb258"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
 
 
                     <!--Unsubscribe Column-->

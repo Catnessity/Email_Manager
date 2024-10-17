@@ -18,7 +18,7 @@ namespace PPNewsletterFilter
         private static readonly object lockObject = new object();
 
         public static ImapClient? Client { get; set; }
-        public static List<Tuple<string, int, bool, string, List<UniqueId>>>? map;
+        public static List<Tuple<string, int, bool, string, List<UniqueId>, string>>? map;
 
         public static JsonNode? unsubscribedSenders;
         public static string unsubscribedSendersFilepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\unsubscribedMails.json";

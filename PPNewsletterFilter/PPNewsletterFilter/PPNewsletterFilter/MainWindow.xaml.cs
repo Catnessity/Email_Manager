@@ -24,6 +24,7 @@ namespace PPNewsletterFilter
     public partial class MainWindow : Window
     {
         public ObservableCollection<EmailInfo> Emails { get; set; }
+        public List<Tuple<string, int, bool, string, List<UniqueId>, string>> allMails { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -49,18 +50,19 @@ namespace PPNewsletterFilter
             }
         }
 
-        public void UpdateEmailList(List<Tuple<string, int, bool, string, List<UniqueId>>> emailMap)
+        public void UpdateEmailList(List<Tuple<string, int, bool, string, List<UniqueId>, string>> emailMap)
         {
+            allMails = emailMap;
             Emails.Clear();
             foreach (var entry in emailMap)
             {
                 if (entry.Item3)
                 {
-                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5 });
+                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
                 }
                 else
                 {
-                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5 });
+                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
                 }
             }
         }
@@ -103,7 +105,56 @@ namespace PPNewsletterFilter
 
         private void btnFilterLoad_Click(object sender, RoutedEventArgs e)
         {
+            Emails.Clear();
+            if (filterNewsletter.IsChecked == true && filterKeyWord.Text == "")
+            {
+                foreach (var entry in allMails)
+                {
+                    if (entry.Item3)
+                    {
+                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    }
+                }
+            }
+            else if (filterNewsletter.IsChecked == true && filterKeyWord.Text != "")
+            {
+                foreach (var entry in allMails)
+                {
+                    if (entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
+                    {
+                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    }
+                }
+            }
+            else if (filterNewsletter.IsChecked == false && filterKeyWord.Text != "")
+            {
+                foreach (var entry in allMails)
+                {
+                    if (entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
+                    {
+                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    }
+                    else if(!entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
+                    {
+                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
 
+                    }
+                }
+            }
+            else
+            {
+                foreach (var entry in allMails)
+                {
+                    if (entry.Item3)
+                    {
+                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    }
+                    else
+                    {
+                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    }
+                }
+            }
         }
         private void btnUnsubscribe_Click(object sender, RoutedEventArgs e)
         {
@@ -151,6 +202,12 @@ namespace PPNewsletterFilter
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
+            var selectedItem = EmailDataGrid.SelectedItem as EmailInfo;
+            if (selectedItem != null)
+            {
+                // Remove the selected item from the collection
+                Emails.Remove(selectedItem);
+            }
             if (sender is Button button && button.CommandParameter is List<UniqueId> uids)
             {
 
@@ -161,13 +218,7 @@ namespace PPNewsletterFilter
                 inbox.Expunge();
 
             }
-            var selectedItem = EmailDataGrid.SelectedItem as EmailInfo;
 
-            if (selectedItem != null)
-            {
-                // Remove the selected item from the collection
-                Emails.Remove(selectedItem);
-            }
 
             // Stop the stopwatch
             stopwatch.Stop();
@@ -187,6 +238,7 @@ namespace PPNewsletterFilter
         public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Visible;
         public string? UnsubscribeLink { get; set; }
         public List<UniqueId>? UniqueIDs { get; set; }
+        public string DateLastSent { get; set; }
 
     }
 
