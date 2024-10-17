@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PPNewsletterFilter
 {
@@ -25,6 +26,7 @@ namespace PPNewsletterFilter
     {
         public ObservableCollection<EmailInfo> Emails { get; set; }
         public List<Tuple<string, int, bool, string, List<UniqueId>, string>> allMails { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,20 +35,27 @@ namespace PPNewsletterFilter
             Data.InitializeUnsubscribedSenders();
             List<string> senderHaveIgnoredUnsubscribe = new List<string>();
 
-            foreach (var mailinfo in Emails)
+            foreach (var mailinfo in Data.map)
             {
-                if (mailinfo.Sender != null)
+                if (mailinfo.Item1 != null)
                 {
-                    //if (SenderIgnoredUnsubscribe(mailinfo.Sender, mailinfo.))
-                    //{
-                    //    senderHaveIgnoredUnsubscribe.Add(mailinfo.Sender);
-                    //}
+
+                    if (Data.SenderIgnoredUnsubscribe(mailinfo.Item1, mailinfo.Item6))
+                    {
+                        senderHaveIgnoredUnsubscribe.Add(mailinfo.Item1);
+                    }
                 }
 
             }
             if (senderHaveIgnoredUnsubscribe.Count > 0)
             {
                 //open notification window
+                MessageBox.Show(
+                $"The following senders have ignored your previous unsubscription:\n{string.Join(", ", senderHaveIgnoredUnsubscribe)}",
+                "Error",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
             }
         }
 
@@ -134,7 +143,7 @@ namespace PPNewsletterFilter
                     {
                         Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
                     }
-                    else if(!entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
+                    else if (!entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
                     {
                         Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
 
@@ -238,7 +247,7 @@ namespace PPNewsletterFilter
         public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Visible;
         public string? UnsubscribeLink { get; set; }
         public List<UniqueId>? UniqueIDs { get; set; }
-        public string DateLastSent { get; set; }
+        public string? DateLastSent { get; set; }
 
     }
 

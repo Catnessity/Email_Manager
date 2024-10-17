@@ -10,6 +10,7 @@ using System.IO;
 using System.Text.Json.Nodes;
 using Org.BouncyCastle.Tls;
 using System.Reflection.Metadata;
+using System.Dynamic;
 
 namespace PPNewsletterFilter
 {
@@ -59,10 +60,35 @@ namespace PPNewsletterFilter
             }
         }
 
-        //public bool SenderIgnoredUnsubscribe(string sender)
-        //{
-
-        //}
+        public static bool SenderIgnoredUnsubscribe(string sender, string date)
+        {
+            DateTime latestDate = DateTime.Parse(date);
+            DateTime unsubscribeDate;
+            bool isFound = false;
+            if (Data.unsubscribedSenders == null)
+            {
+                return true; //we avoid giving false alarms
+            }
+            foreach (var entry in Data.unsubscribedSenders.AsArray())
+            {
+                try
+                {
+                    var s = entry["sender"]?.ToString();
+                    if (s == sender)
+                    {
+                        unsubscribeDate = DateTime.Parse(entry["unsubscribedOn"].ToString());
+                        if(unsubscribeDate > latestDate) { 
+                            isFound = true;
+                        }
+                        break;
+                    }
+                }
+                catch {
+                    Console.WriteLine("An invlaid date had been saved.");
+                }
+            }
+            return isFound;
+        }
 
     }
 }
