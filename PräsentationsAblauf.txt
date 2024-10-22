@@ -1,0 +1,46 @@
+[Lisa]_____________________________________________________________________________________
+Begrüßung
+Technologien:
+	App:
+	- MS WPF -> C#
+	- IMAP für Mailserver Verbindung
+	(-Warum?)
+	Orga:
+	- Azure
+	- GitHub
+Filterung:
+	- Warum nur legale Newsletter und was heißt das?
+	- Funktionsweise Filterung
+
+[Freddy]_____________________________________________________________________________________
+Identity:
+	- Logo and Icon
+		- created as Vector graphic in inkscape
+		- more casual design but not too playful
+	- full theme
+		- first take appeared old and unrefined
+		- decision to rework theme and logos
+		- less Colours -> more refined
+
+[Jasmin]_____________________________________________________________________________________
+Organization
+	- teams and Leadership
+Taskdistribution:
+	Jasmin 		► 	IMAP, code snippets created, backend
+	Lisa 		► 	Webpage, Login, Backend
+	Frederick 	► 	logo, name, UI theme, loading-screen 
+	Caroline 	► 	UI structure, wireframe, login, MainWindow(Xaml)
+Projectplan
+Sprints
+	- #1
+	- #2
+	- #3
+
+[Caroline]_____________________________________________________________________________________
+Testing
+Reflektion
+	- positiv
+		- meetings
+	- negativ
+		- mehr zeit für Planung (reworks vermeiden)
+		- mehr mit tickets arbeiten (besonders die devs)
