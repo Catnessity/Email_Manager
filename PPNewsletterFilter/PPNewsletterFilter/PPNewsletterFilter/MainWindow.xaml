@@ -170,7 +170,7 @@
 
                 <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="#1a1a1a" VerticalAlignment="Center"/>
                 <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <TextBlock Text="Search for Sender:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
+                <TextBlock Text="Enter Filter Word:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
                 <TextBox  Name="filterKeyWord"
                           FontSize="13" 
                           Grid.Row="4"
@@ -255,7 +255,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <!--Last Mail Date Column-->
                     <DataGridTextColumn Header="Date of last Mail" Width="120" Binding="{Binding DateLastSent}">
                         <DataGridTextColumn.HeaderStyle>
@@ -280,7 +280,7 @@
 
 
                     <!--Unsubscribe Column-->
-                    <DataGridTemplateColumn Header="" Width="95">
+                    <DataGridTemplateColumn Header="" Width="88">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -299,7 +299,7 @@
                                 <Grid>
                                     <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Width="80" Background="#ff8900" Foreground="White" Padding="5" 
                                             Visibility="{Binding UnsubscribeButtonVisibility}"
-                                            CommandParameter="{Binding UnsubscribeLink}">
+                                            CommandParameter="{Binding}">
                                         <!--Open PopUp-->
                                         <Button.Triggers>
                                             <EventTrigger RoutedEvent="Button.Click">
@@ -309,7 +309,7 @@
                                                             <BooleanAnimationUsingKeyFrames 
                                                                  Storyboard.TargetName="PopUp_UnsubscribeWarning" 
                                                                  Storyboard.TargetProperty="IsOpen">
-                                                                
+
                                                                 <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True" />
                                                             </BooleanAnimationUsingKeyFrames>
                                                         </Storyboard>
@@ -330,8 +330,8 @@
 
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <!-- Start Button -->
-                                                    <Button Content="Start" Padding="5" Background="#bf112e" Foreground="White" Click="btnUnsubscribe_Click" Margin="5, 0"
-                                                              CommandParameter="{Binding UnsubscribeLink}"/>
+                                                    <Button Content="Start" Padding="5"  Margin="5, 0" Background="#bf112e" Foreground="White" Click="btnUnsubscribe_Click"
+                                                              CommandParameter="{Binding}"/>
                                                     <!-- Close Button -->
                                                     <Button Content="Close" Padding="5" Background="#ff8900" Foreground="White">
                                                         <Button.Triggers>
@@ -361,7 +361,7 @@
 
                     <!--Delete Column-->
                     <!--Delete Column-->
-                    <DataGridTemplateColumn Header="Delete" Width="*">
+                    <DataGridTemplateColumn Header="" Width="35">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -371,14 +371,15 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderThickness" Value="0,1,1,1"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Button Name="OpenPopup_Delete" Content="Delete" Background="#bf112e" Foreground="White" Padding="5">
+                                    <Button Name="OpenPopup_Delete" Width="25" Height="25" Background="#bf112e" Foreground="White" Padding="5">
+                                        <Image Source="images/trashcan.png" Height="20"></Image>
                                         <!--Open PopUp-->
                                         <Button.Triggers>
                                             <EventTrigger RoutedEvent="Button.Click">
@@ -402,14 +403,14 @@
                                            StaysOpen="False">
                                         <Grid Background="#80000000">
                                             <!-- Background from PopUp -->
-                                            <Border BorderBrush="#2D4E3E" Background="#2D4E3E" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
+                                            <Border BorderBrush="#ffb258" Background="#ffb258" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
                                                 <StackPanel>
                                                     <!-- Binding the sender's name dynamically -->
                                                     <TextBlock Foreground="White" Text="{Binding Sender, StringFormat='Continue to delete from: {0}'}" Margin="0, 0, 0, 10"/>
 
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <!-- Start Button -->
-                                                        <Button Content="Continue" Width="100px" Padding="10" Background="#61A888" Foreground="White" Click="btnDelete_Click" Margin="10, 0"
+                                                        <Button Content="Continue" Width="100px" Padding="10" Background="#ff8900" Foreground="White" Click="btnDelete_Click" Margin="10, 0"
                                                             CommandParameter="{Binding UniqueIDs}">
                                                             <Button.Triggers>
                                                                 <EventTrigger RoutedEvent="Button.Click">
