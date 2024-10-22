@@ -255,7 +255,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <!--Last Mail Date Column-->
                     <DataGridTextColumn Header="Date of last Mail" Width="120" Binding="{Binding DateLastSent}">
                         <DataGridTextColumn.HeaderStyle>
@@ -309,7 +309,7 @@
                                                             <BooleanAnimationUsingKeyFrames 
                                                                  Storyboard.TargetName="PopUp_UnsubscribeWarning" 
                                                                  Storyboard.TargetProperty="IsOpen">
-                                                                
+
                                                                 <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True" />
                                                             </BooleanAnimationUsingKeyFrames>
                                                         </Storyboard>
