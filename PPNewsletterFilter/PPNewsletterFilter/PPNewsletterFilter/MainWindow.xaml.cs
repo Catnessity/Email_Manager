@@ -192,8 +192,8 @@ namespace PPNewsletterFilter
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
             var selectedItem = EmailDataGrid.SelectedItem as EmailInfo;
             if (selectedItem != null)
             {
@@ -212,13 +212,12 @@ namespace PPNewsletterFilter
             }
 
 
-            // Stop the stopwatch
-            stopwatch.Stop();
+            //// Stop the stopwatch
+            //stopwatch.Stop();
 
-            // Get the elapsed time in milliseconds
-            long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+            //// Get the elapsed time in milliseconds
+            //long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
 
-            filterKeyWord.Text = $"Elapsed time: {elapsedMilliseconds} milliseconds";
         }
 
     }
