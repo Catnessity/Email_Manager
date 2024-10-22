@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Xml.Linq;
 
 namespace PPNewsletterFilter
 {
@@ -25,7 +26,6 @@ namespace PPNewsletterFilter
     public partial class MainWindow : Window
     {
         public ObservableCollection<EmailInfo> Emails { get; set; }
-        public List<Tuple<string, int, bool, string, List<UniqueId>, string>> allMails { get; set; }
 
         public MainWindow()
         {
@@ -33,45 +33,25 @@ namespace PPNewsletterFilter
             Emails = new ObservableCollection<EmailInfo>();
             this.DataContext = this;
             Data.InitializeUnsubscribedSenders();
-            List<string> senderHaveIgnoredUnsubscribe = new List<string>();
-
-            foreach (var mailinfo in Data.map)
-            {
-                if (mailinfo.Item1 != null)
-                {
-
-                    if (Data.SenderIgnoredUnsubscribe(mailinfo.Item1, mailinfo.Item6))
-                    {
-                        senderHaveIgnoredUnsubscribe.Add(mailinfo.Item1);
-                    }
-                }
-
-            }
-            if (senderHaveIgnoredUnsubscribe.Count > 0)
-            {
-                //open notification window
-                MessageBox.Show(
-                $"The following senders have ignored your previous unsubscription:\n{string.Join(", ", senderHaveIgnoredUnsubscribe)}",
-                "Error",
-                MessageBoxButton.OK,
-                MessageBoxImage.Warning
-                );
-            }
+            Data.CheckUnsubscribedSendersAndNotify();
+          
         }
 
-        public void UpdateEmailList(List<Tuple<string, int, bool, string, List<UniqueId>, string>> emailMap)
+        public void UpdateEmailList(List<EmailInfo> emailMap)
         {
-            allMails = emailMap;
+            Data.map = emailMap;
             Emails.Clear();
             foreach (var entry in emailMap)
             {
-                if (entry.Item3)
+                if (entry.HasLink)
                 {
-                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
                 }
                 else
                 {
-                    Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                    var mail = new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent);
+                    mail.UnsubscribeButtonVisibility = Visibility.Hidden;
+                    Emails.Add(mail);
                 }
             }
         }
@@ -115,54 +95,57 @@ namespace PPNewsletterFilter
         private void btnFilterLoad_Click(object sender, RoutedEventArgs e)
         {
             Emails.Clear();
+
+            //show only newsletter
             if (filterNewsletter.IsChecked == true && filterKeyWord.Text == "")
             {
-                foreach (var entry in allMails)
+                foreach (var entry in Data.map)
                 {
-                    if (entry.Item3)
+                    if (entry.HasLink)
                     {
-                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                        Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
                     }
                 }
             }
+            //show newsletter that contain text
             else if (filterNewsletter.IsChecked == true && filterKeyWord.Text != "")
             {
-                foreach (var entry in allMails)
+                foreach (var entry in Data.map)
                 {
-                    if (entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
+                    if (entry.HasLink && entry.Sender.Contains(filterKeyWord.Text))
                     {
-                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
-                    }
+                        Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
+                    }                    
                 }
             }
+            //show all mails that contain text
             else if (filterNewsletter.IsChecked == false && filterKeyWord.Text != "")
             {
-                foreach (var entry in allMails)
+                foreach (var entry in Data.map)
                 {
-                    if (entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
+                    if (entry.Sender.Contains(filterKeyWord.Text))
                     {
-                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
-                    }
-                    else if (!entry.Item3 && entry.Item1.Contains(filterKeyWord.Text))
-                    {
-                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
-
+                        Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
                     }
                 }
             }
             else
             {
-                foreach (var entry in allMails)
+                //no filters selected
+                foreach (var entry in Data.map)
                 {
-                    if (entry.Item3)
+                    if (entry.HasLink)
                     {
-                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Visible, UnsubscribeLink = entry.Item4, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                        Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
                     }
                     else
                     {
-                        Emails.Add(new EmailInfo { Sender = entry.Item1, Count = entry.Item2, UnsubscribeButtonVisibility = Visibility.Hidden, UniqueIDs = entry.Item5, DateLastSent = entry.Item6 });
+                        var mail = new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent);
+                        mail.UnsubscribeButtonVisibility = Visibility.Hidden;
+                        Emails.Add(mail);
                     }
                 }
+
             }
         }
         private void btnUnsubscribe_Click(object sender, RoutedEventArgs e)
@@ -242,13 +225,29 @@ namespace PPNewsletterFilter
 
     public class EmailInfo
     {
+
+
         public string? Sender { get; set; }
         public int Count { get; set; }
-        public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Visible;
+
+        public bool HasLink { get; set; }
+
+        public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Hidden;
         public string? UnsubscribeLink { get; set; }
         public List<UniqueId>? UniqueIDs { get; set; }
         public string? DateLastSent { get; set; }
 
+        public EmailInfo(string? sender, int count, string? unsubscribeLink, List<UniqueId> uids, string? dateLastSent)
+        {
+            Sender = sender;
+            Count = count;
+            if (UnsubscribeLink == null) { UnsubscribeLink = unsubscribeLink; };
+            HasLink = (UnsubscribeLink != null) ? true : false;
+            if (UnsubscribeLink != null) { UnsubscribeButtonVisibility = Visibility.Visible; }; 
+            UniqueIDs = uids;
+            DateLastSent = dateLastSent;
+
+        }
     }
 
 

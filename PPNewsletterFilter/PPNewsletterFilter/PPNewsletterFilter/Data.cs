@@ -11,6 +11,7 @@ using System.Text.Json.Nodes;
 using Org.BouncyCastle.Tls;
 using System.Reflection.Metadata;
 using System.Dynamic;
+using System.Windows;
 
 namespace PPNewsletterFilter
 {
@@ -19,10 +20,11 @@ namespace PPNewsletterFilter
         private static readonly object lockObject = new object();
 
         public static ImapClient? Client { get; set; }
-        public static List<Tuple<string, int, bool, string, List<UniqueId>, string>>? map;
+        //public static List<Tuple<string, int, bool, string, List<UniqueId>, string>>? map;
+        public static List<EmailInfo>? map;
 
         public static JsonNode? unsubscribedSenders;
-        public static string unsubscribedSendersFilepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\unsubscribedMails.json";
+        public static string unsubscribedSendersFilepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\unsubscribedMails.json";
 
 
         //load existing data or create new file to store unsubscribed senders
@@ -77,20 +79,51 @@ namespace PPNewsletterFilter
                     if (s == sender)
                     {
                         unsubscribeDate = DateTime.Parse(entry["unsubscribedOn"].ToString());
-                        if(unsubscribeDate > latestDate) { 
+                        if (unsubscribeDate > latestDate)
+                        {
                             isFound = true;
                         }
                         break;
                     }
                 }
-                catch {
+                catch
+                {
                     Console.WriteLine("An invlaid date had been saved.");
                 }
             }
             return isFound;
+
+
+        }
+        public static void CheckUnsubscribedSendersAndNotify()
+        {
+            List<string> senderHaveIgnoredUnsubscribe = new List<string>();
+
+            foreach (var mailinfo in Data.map)
+            {
+                if (mailinfo.Sender != null)
+                {
+                    if (Data.SenderIgnoredUnsubscribe(mailinfo.Sender, mailinfo.DateLastSent))
+                    {
+                        senderHaveIgnoredUnsubscribe.Add(mailinfo.Sender);
+                    }
+                }
+            }
+            if (senderHaveIgnoredUnsubscribe.Count > 0)
+            {
+                //open notification window
+                MessageBox.Show(
+                $"The following senders have ignored your previous unsubscription:\n{string.Join(", ", senderHaveIgnoredUnsubscribe)}",
+                "Error",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+                );
+            }
+
         }
 
     }
 }
+
     
 
