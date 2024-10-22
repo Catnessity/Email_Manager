@@ -170,7 +170,7 @@
 
                 <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="#1a1a1a" VerticalAlignment="Center"/>
                 <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <TextBlock Text="Enter Filter Word:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
+                <TextBlock Text="Search for Sender:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
                 <TextBox  Name="filterKeyWord"
                           FontSize="13" 
                           Grid.Row="4"
