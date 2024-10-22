@@ -9,7 +9,8 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        Icon="images/logo.png">
 
 
     <!--Gradient Background-->
@@ -43,19 +44,19 @@
             </Grid.ColumnDefinitions>
 
             <!--Title-->
-            <TextBlock Text="Filter Your Mails"
+            <!--<TextBlock Text="Filter Your Mails"
                         Foreground="#ff8900"
                         FontWeight="Black"
                         FontFamily="Montserrat"
                         FontSize="14"
                         Grid.Column="0"
                         VerticalAlignment="center"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"/>-->
 
-            <!--<Image Source="images/logo.png"
+            <Image Source="images/logo.png"
                        Grid.Column="0"               
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left" Margin="24,0,0,0" Width="66"/>-->
+                       HorizontalAlignment="Left" Margin="24,0,0,0" Width="40"/>
 
             <!--Button Minimalize-->
             <Button  Name="btnMinimize"
