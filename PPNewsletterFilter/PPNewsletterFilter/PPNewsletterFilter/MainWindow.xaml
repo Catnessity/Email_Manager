@@ -172,7 +172,7 @@
                 <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Foreground="#1a1a1a" VerticalAlignment="Center"/>
                 <CheckBox Name="filterUnsubscribe" Content="Unsubscribe" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
                 <CheckBox Name="filterAbbestellen" Content="Abbestellen" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="3" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <TextBlock Text="Enter Filter Word:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
+                <TextBlock Text="Search sender:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
                 <TextBox  Name="filterKeyWord"
                           FontSize="13" 
                           Grid.Row="4"
@@ -261,7 +261,7 @@
 
 
                     <!--Unsubscribe Column-->
-                    <DataGridTemplateColumn Header="" Width="95">
+                    <DataGridTemplateColumn Header="" Width="88">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -342,7 +342,7 @@
 
                     <!--Delete Column-->
                     <!--Delete Column-->
-                    <DataGridTemplateColumn Header="Delete" Width="*">
+                    <DataGridTemplateColumn Header="" Width="35">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -352,14 +352,15 @@
                                 <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Height" Value="40"/>
                                 <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderThickness" Value="0,1,1,1"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Button Name="OpenPopup_Delete" Content="Delete" Background="#bf112e" Foreground="White" Padding="5">
+                                    <Button Name="OpenPopup_Delete" Width="25" Height="25" Background="#bf112e" Foreground="White" Padding="5">
+                                        <Image Source="images/trashcan.png" Height="20"></Image>
                                         <!--Open PopUp-->
                                         <Button.Triggers>
                                             <EventTrigger RoutedEvent="Button.Click">
