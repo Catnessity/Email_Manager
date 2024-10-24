@@ -80,7 +80,7 @@ namespace PPNewsletterFilter
                     if (s == sender)
                     {
                         unsubscribeDate = DateTime.Parse(entry["unsubscribedOn"].ToString());
-                        if (unsubscribeDate > latestDate)
+                        if (unsubscribeDate < latestDate)
                         {
                             isFound = true;
                         }

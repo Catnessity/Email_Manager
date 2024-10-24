@@ -46,17 +46,21 @@ namespace PPNewsletterFilter
             {
                 if (entry.HasLink)
                 {
-                    Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
+                    var mail = new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent);
+                    if (Data.CheckIfSenderIsUnsubscribed(entry.Sender))
+                    {                    
+                        entry.IsUnsubscribed = true;
+                        mail.UnsubscribeButtonColor = "#757575";
+                    }
+                    Emails.Add(mail);
+                    filterNewsletter.IsChecked = false;
+                    filterKeyWord.Text = "";
                 }
                 else
                 {
                     var mail = new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent);
                     mail.UnsubscribeButtonVisibility = Visibility.Hidden;
                     Emails.Add(mail);
-                }
-                if (Data.CheckIfSenderIsUnsubscribed(entry.Sender))
-                {
-                    entry.IsUnsubscribed = true;
                 }
             }
         }
@@ -185,7 +189,8 @@ namespace PPNewsletterFilter
 
                         Data.AddDataToUnsubscribedSenders(info.Sender, info.UnsubscribeLink);
                         info.IsUnsubscribed = true;
-                        //somehow update gui
+                        UpdateEmailList(Data.map);
+                        
 
                     }
                     catch (Exception ex)
@@ -249,6 +254,7 @@ namespace PPNewsletterFilter
 
         public bool IsUnsubscribed { get; set; }
         public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Hidden;
+        public string UnsubscribeButtonColor { get; set; }
         public string? UnsubscribeLink { get; set; }
         public List<UniqueId>? UniqueIDs { get; set; }
         public string? DateLastSent { get; set; }
@@ -261,6 +267,7 @@ namespace PPNewsletterFilter
             if (UnsubscribeLink == null) { UnsubscribeLink = unsubscribeLink; };
             HasLink = (UnsubscribeLink != null) ? true : false;
             if (UnsubscribeLink != null) { UnsubscribeButtonVisibility = Visibility.Visible; }; 
+            UnsubscribeButtonColor = "#ff8900";
             UniqueIDs = uids;
             DateLastSent = dateLastSent;
             IsUnsubscribed = false; //default

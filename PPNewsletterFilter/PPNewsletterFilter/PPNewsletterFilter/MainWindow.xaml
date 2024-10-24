@@ -312,7 +312,9 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>                                  
-                                    <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Width="80" Background="#ff8900" Foreground="White" Padding="5" 
+                                    <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Width="80" 
+                                            Background="{Binding UnsubscribeButtonColor}" 
+                                            Foreground="White" Padding="5" 
                                             Visibility="{Binding UnsubscribeButtonVisibility}"
                                             CommandParameter="{Binding}">
                                         <!--Open PopUp-->
