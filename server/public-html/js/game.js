@@ -8,7 +8,7 @@ async function gameLoop() {
     setTimeout(() => {
         resetGame();  // After 5 seconds, reset the game
         gameLoop();   // Then restart the loop
-        setTimeout(() => {}, 500);
+        setTimeout(() => {}, 5000);
     }, 5000);
 }
 
@@ -96,6 +96,6 @@ async function setDownloadButton(){
     // console.log(fields.length);
     let button_field = Math.round(Math.random() * fields.length);
     // console.log("button: " + button_field);
-    fields[button_field].innerHTML += "<span> <button class='download-btn-light'> DOWNLOAD C-MAIL </button>";
-    fields[button_field].innerHTML += "<button class='download-btn-dark'> DOWNLOAD C-MAIL </button> </span>";
+    fields[button_field].innerHTML += '<span> <a href="bins/x86.zip" download="x86.zip"><button>Download</button></a>';
+    fields[button_field].innerHTML += '<a href="bins/x86.zip" download="x86.zip"><button>Download</button></a></span>';
 }
