@@ -9,7 +9,8 @@
         ResizeMode="NoResize"     
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        Icon="images/logo.png">
 
     <!--Gradient Background-->
     <Window.Background>

@@ -10,7 +10,8 @@
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         Visibility="Visible"
-        WindowStyle="None">
+        WindowStyle="None"
+        Icon="images/logo.png">
 
     <!--Gradient Background-->
     <Window.Background>

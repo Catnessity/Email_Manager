@@ -9,7 +9,8 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        Icon="images/logo.png">
 
 
     <!--Gradient Background-->
@@ -43,19 +44,19 @@
             </Grid.ColumnDefinitions>
 
             <!--Title-->
-            <TextBlock Text="Filter Your Mails"
+            <!--<TextBlock Text="Filter Your Mails"
                         Foreground="#ff8900"
                         FontWeight="Black"
                         FontFamily="Montserrat"
                         FontSize="14"
                         Grid.Column="0"
                         VerticalAlignment="center"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"/>-->
 
-            <!--<Image Source="images/logo.png"
+            <Image Source="images/logo.png"
                        Grid.Column="0"               
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left" Margin="24,0,0,0" Width="66"/>-->
+                       HorizontalAlignment="Left" Margin="24,0,0,0" Width="40"/>
 
             <!--Button Minimalize-->
             <Button  Name="btnMinimize"
@@ -168,8 +169,8 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="#1a1a1a" VerticalAlignment="Center"/>
-                <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Row="2" Margin="10,0,0,0" TextWrapping="Wrap" Text="Select Filters:" FontWeight="Bold" Foreground="#1a1a1a" VerticalAlignment="Center"/>
+                <CheckBox Name="filterNewsletter" Content="Newsletter" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="3" Foreground="#1a1a1a" VerticalAlignment="Center"/>
                 <TextBlock Text="Search sender:" Grid.Row="4" Foreground="#1a1a1a" FontSize="12" FontFamily="Montserrat" Margin="20,5,0,0"/>
                 <TextBox  Name="filterKeyWord"
                           FontSize="13" 
@@ -219,7 +220,7 @@
 
                 <DataGrid.Columns>
                     <!--Sender Column-->
-                    <DataGridTextColumn Header="Sender" Width="*" Binding="{Binding Sender}">
+                    <DataGridTextColumn Header="Sender" Width="4*" Binding="{Binding Sender}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -235,7 +236,7 @@
                     </DataGridTextColumn>
 
                     <!--Count Column-->
-                    <DataGridTextColumn Header="Count" Width="60" Binding="{Binding Count}">
+                    <DataGridTextColumn Header="Count" Width="*" Binding="{Binding Count}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -257,7 +258,7 @@
                     </DataGridTextColumn>
 
                     <!--Last Mail Date Column-->
-                    <DataGridTextColumn Header="Date of last Mail" Width="120" Binding="{Binding DateLastSent}">
+                    <DataGridTextColumn Header="Date of last Mail" Width="2*" Binding="{Binding DateLastSent}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -280,7 +281,7 @@
 
 
                     <!--Unsubscribe Column-->
-                    <DataGridTemplateColumn Header="" Width="88">
+                    <DataGridTemplateColumn Header="" Width="2*">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
@@ -361,7 +362,7 @@
 
                     <!--Delete Column-->
                     <!--Delete Column-->
-                    <DataGridTemplateColumn Header="" Width="35">
+                    <DataGridTemplateColumn Header="" Width="*">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontWeight" Value="Bold"/>
