@@ -12,7 +12,19 @@
         MouseDown="Window_MouseDown"
         Icon="images/logo.png">
 
-
+    <Window.Resources>
+        <Style x:Key="ButtonBackgroundStyle" TargetType="Button">
+            <Setter Property="Background" Value="Gray"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsButtonEnabled}" Value="True">
+                    <Setter Property="Background" Value="#ff8900"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsButtonEnabled}" Value="False">
+                    <Setter Property="Background" Value="Gray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <!--Gradient Background-->
     <Window.Background>
         <LinearGradientBrush StartPoint="0.8,0.3" EndPoint="0.9,1">
@@ -20,6 +32,7 @@
             <GradientStop Color="DarkGray" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
+
 
     <!--Page divided into two Rows-->
     <Grid Cursor="Hand">
@@ -183,6 +196,7 @@
                           Background="#ffb258"
                           BorderBrush="#1a1a1a"
                           BorderThickness="2"
+                          KeyDown="FilterField_Enter"
                           VerticalContentAlignment="Center"/>
 
                 <!--Button Filter-->
@@ -297,7 +311,7 @@
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid>                                  
                                     <Button Name="OpenPopup_Unsubscribe" Content="Unsubscribe" Width="80" Background="#ff8900" Foreground="White" Padding="5" 
                                             Visibility="{Binding UnsubscribeButtonVisibility}"
                                             CommandParameter="{Binding}">

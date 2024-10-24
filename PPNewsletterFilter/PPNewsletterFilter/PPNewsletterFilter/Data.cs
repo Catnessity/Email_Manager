@@ -12,19 +12,20 @@ using Org.BouncyCastle.Tls;
 using System.Reflection.Metadata;
 using System.Dynamic;
 using System.Windows;
+using System.Runtime.CompilerServices;
 
 namespace PPNewsletterFilter
 {
     public static class Data
     {
         private static readonly object lockObject = new object();
-
+        public static string Email;
         public static ImapClient? Client { get; set; }
         //public static List<Tuple<string, int, bool, string, List<UniqueId>, string>>? map;
         public static List<EmailInfo>? map;
 
         public static JsonNode? unsubscribedSenders;
-        public static string unsubscribedSendersFilepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\unsubscribedMails.json";
+        public static string unsubscribedSendersFilepath;
 
 
         //load existing data or create new file to store unsubscribed senders
@@ -119,11 +120,25 @@ namespace PPNewsletterFilter
                 MessageBoxImage.Warning
                 );
             }
-
+        }
+        public static bool CheckIfSenderIsUnsubscribed(string sender)
+        {
+            foreach (var mailinfo in Data.map)
+            {
+                foreach (var entry in Data.unsubscribedSenders.AsArray())
+                {
+                    var s = entry["sender"]?.ToString();
+                    if (s == sender)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
     }
 }
 
-    
+
 

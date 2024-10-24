@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Xml.Linq;
+using System.ComponentModel;
 
 namespace PPNewsletterFilter
 {
@@ -52,6 +53,10 @@ namespace PPNewsletterFilter
                     var mail = new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent);
                     mail.UnsubscribeButtonVisibility = Visibility.Hidden;
                     Emails.Add(mail);
+                }
+                if (Data.CheckIfSenderIsUnsubscribed(entry.Sender))
+                {
+                    entry.IsUnsubscribed = true;
                 }
             }
         }
@@ -112,7 +117,7 @@ namespace PPNewsletterFilter
             {
                 foreach (var entry in Data.map)
                 {
-                    if (entry.HasLink && entry.Sender.Contains(filterKeyWord.Text))
+                    if (entry.HasLink && entry.Sender.ToLower().Contains(filterKeyWord.Text.ToLower()))
                     {
                         Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
                     }                    
@@ -123,7 +128,7 @@ namespace PPNewsletterFilter
             {
                 foreach (var entry in Data.map)
                 {
-                    if (entry.Sender.Contains(filterKeyWord.Text))
+                    if (entry.Sender.ToLower().Contains(filterKeyWord.Text.ToLower()))
                     {
                         Emails.Add(new EmailInfo(entry.Sender, entry.Count, entry.UnsubscribeLink, entry.UniqueIDs, entry.DateLastSent));
                     }
@@ -146,6 +151,13 @@ namespace PPNewsletterFilter
                     }
                 }
 
+            }
+        }
+        private void FilterField_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnFilterLoad_Click(sender, e);
             }
         }
         private void btnUnsubscribe_Click(object sender, RoutedEventArgs e)
@@ -172,6 +184,8 @@ namespace PPNewsletterFilter
                         });
 
                         Data.AddDataToUnsubscribedSenders(info.Sender, info.UnsubscribeLink);
+                        info.IsUnsubscribed = true;
+                        //somehow update gui
 
                     }
                     catch (Exception ex)
@@ -219,6 +233,8 @@ namespace PPNewsletterFilter
             //long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
 
         }
+    
+
 
     }
 
@@ -231,10 +247,12 @@ namespace PPNewsletterFilter
 
         public bool HasLink { get; set; }
 
+        public bool IsUnsubscribed { get; set; }
         public Visibility UnsubscribeButtonVisibility { get; set; } = Visibility.Hidden;
         public string? UnsubscribeLink { get; set; }
         public List<UniqueId>? UniqueIDs { get; set; }
         public string? DateLastSent { get; set; }
+       
 
         public EmailInfo(string? sender, int count, string? unsubscribeLink, List<UniqueId> uids, string? dateLastSent)
         {
@@ -245,9 +263,9 @@ namespace PPNewsletterFilter
             if (UnsubscribeLink != null) { UnsubscribeButtonVisibility = Visibility.Visible; }; 
             UniqueIDs = uids;
             DateLastSent = dateLastSent;
-
+            IsUnsubscribed = false; //default
         }
+
     }
-
-
+   
 }

@@ -62,53 +62,55 @@ namespace PPNewsletterFilter
             // Connect to IMAP server and authenticate
             Data.Client = new ImapClient();
 
-                var imap_address = "";
+            var imap_address = "";
 
-                //get the corret imap address based on the given email provider
-                if (mail.Contains("@gmx."))
-                {
-                    imap_address = "imap.gmx.net";
-                }
-                else if (mail.Contains("@gmail."))
-                {
-                    imap_address = "imap.gmail.com";
-                }
-                else if (mail.Contains("@outlook.") || password.Contains("@hotmail"))
-                {
-                    imap_address = "outlook.office365.com";
-                }
-                else
-                {
-                    feedback.Text = "Please check your email, either there is a typo or your provider is not supported.";
-                    return;
-                }
-
-                //try to connect to the imap server with the given password
-                try
-                {
-                    Data.Client.Connect(imap_address, 993, true);
-                    if(password != "")
-                    Data.Client.Authenticate(mail, password);
-                    else if(vispassword != "")
-                    Data.Client.Authenticate(mail, vispassword);
+            //get the corret imap address based on the given email provider
+            if (mail.Contains("@gmx."))
+            {
+                imap_address = "imap.gmx.net";
             }
-                catch (Exception ex)
-                {
-                    feedback.Text = "The connection to the server or the authentication failed. \n Check your password and try again.";
-                    return;
-                }
+            else if (mail.Contains("@gmail."))
+            {
+                imap_address = "imap.gmail.com";
+            }
+            else if (mail.Contains("@outlook.") || password.Contains("@hotmail"))
+            {
+                imap_address = "outlook.office365.com";
+            }
+            else
+            {
+                feedback.Text = "Please check your email, either there is a typo or your provider is not supported.";
+                return;
+            }
 
-                try
-                {
-                    ShowLoadingView();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}", "Something went wrong while processing the incoming messages", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+            //try to connect to the imap server with the given password
+            try
+            {
+                Data.Client.Connect(imap_address, 993, true);
+                if (password != "")
+                    Data.Client.Authenticate(mail, password);
+                else if (vispassword != "")
+                    Data.Client.Authenticate(mail, vispassword);
+                Data.Email = mail;
+                Data.unsubscribedSendersFilepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\unsubscribedMails-" + Data.Email + ".json";
+            }
+            catch (Exception ex)
+            {
+                feedback.Text = "The connection to the server or the authentication failed. \n Check your password and try again.";
+                return;
+            }
 
-            
+            try
+            {
+                ShowLoadingView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Something went wrong while processing the incoming messages", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
         }
 
         public void ShowLoadingView()
@@ -145,7 +147,7 @@ namespace PPNewsletterFilter
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void btnFullScreen_Click(object sender, RoutedEventArgs e)
@@ -159,7 +161,7 @@ namespace PPNewsletterFilter
                 WindowState = WindowState.Maximized;
             }
         }
-        
+
         private void PasswordField_Enter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
