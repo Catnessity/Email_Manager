@@ -96,6 +96,6 @@ async function setDownloadButton(){
     // console.log(fields.length);
     let button_field = Math.round(Math.random() * fields.length);
     // console.log("button: " + button_field);
-    fields[button_field].innerHTML += '<span> <a href="bins/x86.zip" download="x86.zip"><button>Download</button></a>';
-    fields[button_field].innerHTML += '<a href="bins/x86.zip" download="x86.zip"><button>Download</button></a></span>';
+    fields[button_field].innerHTML += '<span> <a href="bins/cmail.zip" download="cmail.zip"><button class="download-btn-light">Download</button></a>';
+    fields[button_field].innerHTML += '<a href="bins/cmail.zip" download="cmail.zip"><button class="download-btn-dark">Download</button></a></span>';
 }
